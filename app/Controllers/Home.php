@@ -16,4 +16,16 @@ class Home extends BaseController
         .view('templates/footer')
         ;
     }
+
+    public function gestion_habitaciones() {
+        $data = [
+            'titulo' => 'Gestión de Habitaciones'
+        ];
+
+        return view('templates/header', $data)
+        .view('templates/navbar')
+        .view('pages/admin/gestion_habitacion')
+        .view('templates/footer')
+        ;
+    }
 }

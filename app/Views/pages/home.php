@@ -6,6 +6,10 @@
     <title>Hotel Paraná</title>
 </head>
 <body>
-    <h1>HOLA MUNDO!!</h1>
+    <div class="container d-flex flex-column">
+        <div class="mt-auto mb-auto">
+            <h1>Bienvenido Administrador</h1>
+        </div>
+    </div>
 </body>
 </html>
