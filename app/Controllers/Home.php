@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 class Home extends BaseController
 {
+    
+
     public function index(): string
     {
         $data = [
@@ -18,6 +20,7 @@ class Home extends BaseController
     }
 
     public function gestion_habitaciones() {
+
         $data = [
             'titulo' => 'Gestión de Habitaciones'
         ];

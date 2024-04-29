@@ -1,0 +1,14 @@
+<estados_hab>
+    <estado>
+        <id_estado>1</id_estado>
+        <nombre>Libre</nombre>
+    </estado>
+    <estado>
+        <id_estado>2</id_estado>
+        <nombre>Ocupado</nombre>
+    </estado>
+    <estado>
+        <id_estado>3</id_estado>
+        <nombre>Deshabilitado</nombre>
+    </estado>
+</estados_hab>

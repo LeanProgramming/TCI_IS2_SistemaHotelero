@@ -1,102 +1,209 @@
 <?php
-$habitaciones = [
-    [
-        'nro_piso' => '1',
-        'nro_hab' => '1',
-        'tipo_hab' => 'Simple',
-        'cant_camas' => 1,
-        'tipo_cama' => '1 plaza',
-        'precio' => 3500,
-        'estado' => 'Libre'
-    ],
-    [
-        'nro_piso' => '1',
-        'nro_hab' => '2',
-        'tipo_hab' => 'Simple',
-        'cant_camas' => 2,
-        'tipo_cama' => '1 plaza',
-        'precio' => 5000,
-        'estado' => 'Libre'
-    ],
-    [
-        'nro_piso' => '1',
-        'nro_hab' => '3',
-        'tipo_hab' => 'Doble',
-        'cant_camas' => 1,
-        'tipo_cama' => '2 plazas',
-        'precio' => 5500,
-        'estado' => 'Libre'
-    ],
-    [
-        'nro_piso' => '2',
-        'nro_hab' => '1',
-        'tipo_hab' => 'Simple',
-        'cant_camas' => 2,
-        'tipo_cama' => '1 plaza',
-        'precio' => 5000,
-        'estado' => 'Libre'
-    ],
-    [
-        'nro_piso' => '2',
-        'nro_hab' => '2',
-        'tipo_hab' => 'Doble',
-        'cant_camas' => 1,
-        'tipo_cama' => '2 plaza',
-        'precio' => 5500,
-        'estado' => 'Libre'
-    ],
-    [
-        'nro_piso' => '3',
-        'nro_hab' => '1',
-        'tipo_hab' => 'Doble',
-        'cant_camas' => 1,
-        'tipo_cama' => '2 plaza',
-        'precio' => 5500,
-        'estado' => 'Libre'
-    ],
-    [
-        'nro_piso' => '3',
-        'nro_hab' => '2',
-        'tipo_hab' => 'Doble',
-        'cant_camas' => 2,
-        'tipo_cama' => '2 plaza',
-        'precio' => 7000,
-        'estado' => 'Libre'
-    ]
-]
+
+        //Crear variables para guardar los xml
+        $habs = [];
+        $pisos = [];
+        $tipos_hab = [];
+        $tipos_cama = [];
+        $estados = [];
+        
+        // Cargar el archivo XML
+        $xml_hab = simplexml_load_file(base_url('assets/xml/habitaciones.xml'));
+        $xml_pisos = simplexml_load_file(base_url('assets/xml/pisos.xml'));
+        $xml_tiposHab = simplexml_load_file(base_url('assets/xml/tipos_hab.xml'));
+        $xml_tiposCama = simplexml_load_file(base_url('assets/xml/tipos_cama.xml'));
+        $xml_estados = simplexml_load_file(base_url('assets/xml/estados_hab.xml'));
+
+        // Cargar en la variable de habitaciones
+        foreach ($xml_hab->habitacion as $habitacion) {
+            $hab = [
+                'id_hab' => $habitacion->id_hab,
+                'nro_piso' => $habitacion->nro_piso,
+                'nro_hab' => $habitacion->nro_hab,
+                'tipo_hab' => $habitacion->tipo_hab,
+                'cant_camas' => $habitacion->cant_camas,
+                'tipo_cama' => $habitacion->tipo_cama,
+                'precio' => $habitacion->precio,
+                'estado' => $habitacion->estado
+            ];
+
+            array_push($habs, $hab);
+        }
+        
+        //Cargar en la variable de pisos
+        foreach($xml_pisos->piso as $piso) {
+            $p = [
+                'id_piso' => $piso->id_piso,
+                'nom_piso' => $piso->nom_piso,
+            ];
+
+            array_push($pisos, $p);
+        }
+
+        //Cargar en la variable de tipo de habitación
+        foreach($xml_tiposHab->tipo_hab as $tipo_hab) {
+            $tipo = [
+                'id_tipoHab' => $tipo_hab->id_tipoHab,
+                'nombre' => $tipo_hab->nombre,
+                'precio' => $tipo_hab->precio
+            ];
+
+            array_push($tipos_hab, $tipo);
+        }
+
+        //Cargar en la variable de tipo de cama
+        foreach($xml_tiposCama->tipo_cama as $tipo_cama) {
+            $tipo = [
+                'id_tipoCama' => $tipo_cama->id_tipoCama,
+                'descripcion' => $tipo_cama->descripcion,
+                'precio' => $tipo_cama->precio
+            ];
+
+            array_push($tipos_cama, $tipo);
+        }
+
+        //Cargar en la variable de estados
+        foreach($xml_estados->estado as $estado) {
+            $e = [
+                'id_estado' => $estado->id_estado,
+                'nombre' => $estado->nombre,
+            ];
+
+            array_push($estados, $e);
+        }
+        
+        //Armo la variable habitaciones que se motrará
+        $habitaciones = [];
+        foreach($habs as $h) {
+            $i_piso = array_search(strval($h['nro_piso']), array_column($pisos, 'id_piso')); 
+            $i_tipoHab = array_search(strval($h['tipo_hab']), array_column($tipos_hab,'id_tipoHab'));
+            $i_tipoCama = array_search(strval($h['tipo_cama']), array_column($tipos_cama, 'id_tipoCama'));
+            $i_estado = array_search(strval($h['estado']), array_column($estados,'id_estado'));          
+            
+            $hab = [
+                'id_hab' => $h['id_hab'],
+                'nro_piso' => $pisos[$i_piso]['nom_piso'],
+                'nro_hab' => $h['nro_hab'],
+                'tipo_hab' =>$tipos_hab[$i_tipoHab]['nombre'],
+                'cant_camas' => $h['cant_camas'],
+                'tipo_cama' => $tipos_cama[$i_tipoCama]['descripcion'],
+                'precio' => $h['precio'],
+                'estado' => $estados[$i_estado]['nombre']
+            ];
+            
+            array_push($habitaciones, $hab);
+        }
 
 ?>
 
+<div class="container mt-5 mb-5 ">
 
-<div class="container">
-    <table class="table table-striped">
-        <thead>
-            <th scope="col">Nro Piso</th>
-            <th scope="col">Nro Habitación</th>
-            <th scope="col">Tipo de Habitación</th>
-            <th scope="col">Cantidad de Camas</th>
-            <th scope="col">Tipo de Cama</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Estado</th>
-        </thead>
-        <tbody>
+    <div class="container">
 
-            <?php
-                foreach($habitaciones as $hab) {
+        <div class="row mb-2">
+            <div class="col">
+                <button id="btn_hab_alta" class="btn btn-outline-primary" disabled>Habitaciones de alta</button>
+                <button id="btn_hab_baja" class="btn btn-outline-danger">Habitaciones de baja</button>
+            </div>
+        </div>
+        <div class="row text-center">
+
+            <div id="tabla_hab_altas">
+                <table class="table table-striped border">
+                    <thead>
+                        <th scope="col">Nro Piso</th>
+                        <th scope="col">Nro Habitación</th>
+                        <th scope="col">Tipo de Habitación</th>
+                        <th scope="col">Cantidad de Camas</th>
+                        <th scope="col">Tipo de Cama</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Modificar</th>
+                        <th scope="col">Dar de Baja</th>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if($habitaciones != null) {
+                            foreach($habitaciones as $hab) {
+                                if ($hab['estado'] != 'Deshabilitado') {
+                         ?>
+                        <tr scope="row">
+                            <td><?= $hab['nro_piso'] ?></td>
+                            <td><?= $hab['nro_hab'] ?></td>
+                            <td><?= $hab['tipo_hab'] ?></td>
+                            <td><?= $hab['cant_camas'] ?></td>
+                            <td><?= $hab['tipo_cama'] ?></td>
+                            <td><?= $hab['precio'] ?></td>
+                            <td><?= $hab['estado'] ?></td>
+                            <td><button class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                            <td><a class="btn btn-danger" href="<?= base_url('eliminar_habitacion/'. trim($hab['id_hab'])) ?>"><i class="fa-solid fa-trash"></i></a></td>
+                        </tr>
+                        <?php
+                        }
+                       }
+                     } else {
+                     ?>
+                     <tr scope='row'>
+                        <td colspan="9">No existe habitaciones dadas de alta</td>
+                     </tr>
+                     <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="tabla_hab_bajas" class="d-none">
+                <table class="table table-striped border">
+                    <thead>
+                        <th scope="col">Nro Piso</th>
+                        <th scope="col">Nro Habitación</th>
+                        <th scope="col">Tipo de Habitación</th>
+                        <th scope="col">Cantidad de Camas</th>
+                        <th scope="col">Tipo de Cama</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Modificar</th>
+                        <th scope="col">Dar de Alta</th>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if($habitaciones != null) {
+                            foreach($habitaciones as $hab) {
+                                if ($hab['estado'] == 'Deshabilitado') {
             ?>
-                <tr scope="row">
-                    <td><?= $hab['nro_piso'] ?></td>
-                    <td><?= $hab['nro_hab'] ?></td>
-                    <td><?= $hab['tipo_hab'] ?></td>
-                    <td><?= $hab['cant_camas'] ?></td>
-                    <td><?= $hab['tipo_cama'] ?></td>
-                    <td><?= $hab['precio'] ?></td>
-                    <td><?= $hab['estado'] ?></td>
-                </tr>
-            <?php
-                }
-            ?>
-            
-        </tbody>
-    </table>
+                        <tr scope="row">
+                            <td><?= $hab['nro_piso'] ?></td>
+                            <td><?= $hab['nro_hab'] ?></td>
+                            <td><?= $hab['tipo_hab'] ?></td>
+                            <td><?= $hab['cant_camas'] ?></td>
+                            <td><?= $hab['tipo_cama'] ?></td>
+                            <td><?= $hab['precio'] ?></td>
+                            <td><?= $hab['estado'] ?></td>
+                            <td><button class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                            <td><button class="btn btn-success"><i
+                                        class="fa-solid fa-arrow-up-from-bracket"></i></button></td>
+                        </tr>
+                        <?php
+                                }
+                            }
+                        } else {
+                            ?>
+                            <tr scope='row'>
+                               <td colspan="9">No existe habitaciones dadas de baja</td>
+                            </tr>
+                            <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="row ">
+            <div class="col d-flex justify-content-end">
+                <a id="btn_agregar_hab" class="btn btn-outline-success" href="<?= base_url('agregar_habitacion') ?>"> <i
+                        class="fa-solid fa-plus"></i> Agregar habitación</a>
+            </div>
+        </div>
+
+    </div>
+
 </div>

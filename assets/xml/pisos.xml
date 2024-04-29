@@ -1,0 +1,14 @@
+<pisos>
+    <piso>
+        <id_piso>1</id_piso>
+        <nom_piso>Primer Piso</nom_piso>
+    </piso>
+    <piso>
+        <id_piso>2</id_piso>
+        <nom_piso>Segundo Piso</nom_piso>
+    </piso>
+    <piso>
+        <id_piso>3</id_piso>
+        <nom_piso>Tercer Piso</nom_piso>
+    </piso>
+</pisos>

@@ -1,0 +1,27 @@
+<tipos_cama>
+    <tipo_cama>
+        <id_tipoCama>1</id_tipoCama>
+        <descripcion>1 Plaza</descripcion>
+        <precio>1000</precio>
+    </tipo_cama>
+    <tipo_cama>
+        <id_tipoCama>2</id_tipoCama>
+        <descripcion>1 1/2 Plaza</descripcion>
+        <precio>2000</precio>
+    </tipo_cama>
+    <tipo_cama>
+        <id_tipoCama>3</id_tipoCama>
+        <descripcion>2 Plazas</descripcion>
+        <precio>3000</precio>
+    </tipo_cama>
+    <tipo_cama>
+        <id_tipoCama>4</id_tipoCama>
+        <descripcion>King Size</descripcion>
+        <precio>4000</precio>
+    </tipo_cama>
+    <tipo_cama>
+        <id_tipoCama>5</id_tipoCama>
+        <descripcion>Queen Size</descripcion>
+        <precio>5000</precio>
+    </tipo_cama>
+</tipos_cama>

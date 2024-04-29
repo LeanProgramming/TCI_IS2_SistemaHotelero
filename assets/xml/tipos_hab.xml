@@ -1,0 +1,22 @@
+<tipos_hab>
+    <tipo_hab>
+        <id_tipoHab>1</id_tipoHab>
+        <nombre>Simple</nombre>
+        <precio>1500</precio>
+    </tipo_hab>
+    <tipo_hab>
+        <id_tipoHab>2</id_tipoHab>
+        <nombre>Doble</nombre>
+        <precio>2500</precio>
+    </tipo_hab>
+    <tipo_hab>
+        <id_tipoHab>3</id_tipoHab>
+        <nombre>Ejecutiva</nombre>
+        <precio>3500</precio>
+    </tipo_hab>
+    <tipo_hab>
+        <id_tipoHab>4</id_tipoHab>
+        <nombre>Presidencial</nombre>
+        <precio>4500</precio>
+    </tipo_hab>
+</tipos_hab>
