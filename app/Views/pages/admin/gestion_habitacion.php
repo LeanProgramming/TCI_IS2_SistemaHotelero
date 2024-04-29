@@ -136,7 +136,7 @@
                             <td><?= $hab['precio'] ?></td>
                             <td><?= $hab['estado'] ?></td>
                             <td><button class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button></td>
-                            <td><a class="btn btn-danger" href="<?= base_url('eliminar_habitacion/'. trim($hab['id_hab'])) ?>"><i class="fa-solid fa-trash"></i></a></td>
+                            <td><a class="btn btn-danger" href="<?= base_url('dar_baja_habitacion/'. trim($hab['id_hab'])) ?>"><i class="fa-solid fa-trash"></i></a></td>
                         </tr>
                         <?php
                         }
@@ -179,8 +179,7 @@
                             <td><?= $hab['precio'] ?></td>
                             <td><?= $hab['estado'] ?></td>
                             <td><button class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button></td>
-                            <td><button class="btn btn-success"><i
-                                        class="fa-solid fa-arrow-up-from-bracket"></i></button></td>
+                            <td><a class="btn btn-success" href="<?= base_url('dar_alta_habitacion/'. trim($hab['id_hab'])) ?>"><i class="fa-solid fa-arrow-up-from-bracket"></i></a></td>
                         </tr>
                         <?php
                                 }

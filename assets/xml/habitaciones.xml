@@ -22,9 +22,7 @@
 		<precio>
 			3500
 		</precio>
-		<estado>
-			1
-		</estado>
+		<estado>1</estado>
 	</habitacion>
 	<habitacion>
 		<id_hab>
@@ -152,9 +150,7 @@
 		<precio>
 			5500
 		</precio>
-		<estado>
-			1
-		</estado>
+		<estado>1</estado>
 	</habitacion>
 	<habitacion>
 		<id_hab>
@@ -178,9 +174,7 @@
 		<precio>
 			700
 		</precio>
-		<estado>
-			3
-		</estado>
+		<estado>3</estado>
 	</habitacion>
 	
 	

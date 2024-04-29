@@ -62,7 +62,7 @@ class HabitacionController extends BaseController
         .view('templates/footer');
     }
 
-    public function eliminar_habitacion($id) {
+    public function dar_baja_habitacion($id) {
         $xml = simplexml_load_file(FCPATH. '\assets\xml\habitaciones.xml');
 
         // Buscar el elemento de la habitación que coincide con el ID dado
@@ -76,18 +76,39 @@ class HabitacionController extends BaseController
 
         // Verificar si se encontró la habitación
         if ($elemento_a_eliminar !== null) {
-
-            //echo "<h1>Encontre el elemento ". $id . "</h1>";
-           //var_dump($elemento_a_eliminar);
             
-            // Eliminar el elemento del árbol XML
-            unset($elemento_a_eliminar[0]);
+            // Modifica el atributo de estado de la habitación
+            $elemento_a_eliminar->estado = 3;
 
             // Guardar los cambios de vuelta en el archivo XML
             $xml->asXML(FCPATH. '\assets\xml\habitaciones.xml');
             
-        } else {
-            echo "<h1>No encontré el elemento ". $id . "</h1>";
+        }
+
+        return redirect()->to(base_url('/gestion_habitaciones'));
+    }
+
+    public function dar_alta_habitacion($id) {
+        $xml = simplexml_load_file(FCPATH. '\assets\xml\habitaciones.xml');
+
+        // Buscar el elemento de la habitación que coincide con el ID dado
+        $elemento = null;
+        foreach ($xml->habitacion as $habitacion) {
+            if ($habitacion->id_hab == $id) {
+                $elemento = $habitacion;
+                break;
+            }
+        }
+
+        // Verificar si se encontró la habitación
+        if ($elemento!== null) {
+            
+            // Modifica el atributo de estado de la habitación
+            $elemento->estado = 1;
+
+            // Guardar los cambios de vuelta en el archivo XML
+            $xml->asXML(FCPATH. '\assets\xml\habitaciones.xml');
+            
         }
 
         return redirect()->to(base_url('/gestion_habitaciones'));
