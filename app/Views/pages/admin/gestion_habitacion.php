@@ -96,11 +96,11 @@
 
 ?>
 
-<div class="container mt-5 mb-5 ">
+<div class="container my-5 ">
 
     <div class="container">
 
-        <div class="row mb-2">
+        <div class="row my-3">
             <div class="col">
                 <button id="btn_hab_alta" class="btn btn-outline-primary" disabled>Habitaciones de alta</button>
                 <button id="btn_hab_baja" class="btn btn-outline-danger">Habitaciones de baja</button>
@@ -108,35 +108,35 @@
         </div>
         <div class="row text-center">
 
-            <div id="tabla_hab_altas">
-                <table class="table table-striped border">
-                    <thead>
-                        <th scope="col">Nro Piso</th>
-                        <th scope="col">Nro Habitación</th>
-                        <th scope="col">Tipo de Habitación</th>
-                        <th scope="col">Cantidad de Camas</th>
-                        <th scope="col">Tipo de Cama</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Modificar</th>
-                        <th scope="col">Dar de Baja</th>
+            <div id="tabla_hab_altas" class="borde-1 rounded p-1">
+                <table class="table table-light table-striped table-bordered align-middle m-0" >
+                    <thead class="table-primary">
+                        <th scope="col" class="text-center">Nro Piso</th>
+                        <th scope="col" class="text-center">Nro Habitación</th>
+                        <th scope="col" class="text-center">Tipo de Habitación</th>
+                        <th scope="col" class="text-center">Cantidad de Camas</th>
+                        <th scope="col" class="text-center">Tipo de Cama</th>
+                        <th scope="col" class="text-center">Precio</th>
+                        <th scope="col" class="text-center">Estado</th>
+                        <th scope="col" class="text-center">Modificar</th>
+                        <th scope="col" class="text-center">Dar de Baja</th>
                     </thead>
-                    <tbody>
+                    <tbody class="table-group-divider">
                         <?php
                         if($habitaciones != null) {
                             foreach($habitaciones as $hab) {
                                 if ($hab['estado'] != 'Deshabilitado') {
                          ?>
                         <tr scope="row">
-                            <td><?= $hab['nro_piso'] ?></td>
-                            <td><?= $hab['nro_hab'] ?></td>
-                            <td><?= $hab['tipo_hab'] ?></td>
-                            <td><?= $hab['cant_camas'] ?></td>
-                            <td><?= $hab['tipo_cama'] ?></td>
-                            <td><?= $hab['precio'] ?></td>
-                            <td><?= $hab['estado'] ?></td>
-                            <td><button class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button></td>
-                            <td><a class="btn btn-danger" href="<?= base_url('dar_baja_habitacion/'. trim($hab['id_hab'])) ?>"><i class="fa-solid fa-trash"></i></a></td>
+                            <td class="text-center"><?= $hab['nro_piso'] ?></td>
+                            <td class="text-center"><?= $hab['nro_hab'] ?></td>
+                            <td class="text-center"><?= $hab['tipo_hab'] ?></td>
+                            <td class="text-center"><?= $hab['cant_camas'] ?></td>
+                            <td class="text-center"><?= $hab['tipo_cama'] ?></td>
+                            <td class="text-center"><?= $hab['precio'] ?></td>
+                            <td class="text-center"><?= $hab['estado'] ?></td>
+                            <td class="text-center"><button class="btn btn-outline-warning"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                            <td class="text-center"><a class="btn btn-outline-danger" href="<?= base_url('dar_baja_habitacion/'. trim($hab['id_hab'])) ?>"><i class="fa-solid fa-trash"></i></a></td>
                         </tr>
                         <?php
                         }
@@ -151,35 +151,35 @@
                 </table>
             </div>
 
-            <div id="tabla_hab_bajas" class="d-none">
-                <table class="table table-striped border">
-                    <thead>
-                        <th scope="col">Nro Piso</th>
-                        <th scope="col">Nro Habitación</th>
-                        <th scope="col">Tipo de Habitación</th>
-                        <th scope="col">Cantidad de Camas</th>
-                        <th scope="col">Tipo de Cama</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Modificar</th>
-                        <th scope="col">Dar de Alta</th>
+            <div id="tabla_hab_bajas" class="d-none borde-1 rounded p-1">
+                <table class="table table-striped table-bordered align-middle m-0">
+                    <thead class="table-primary">
+                        <th scope="col" class="text-center">Nro Piso</th>
+                        <th scope="col" class="text-center">Nro Habitación</th>
+                        <th scope="col" class="text-center">Tipo de Habitación</th>
+                        <th scope="col" class="text-center">Cantidad de Camas</th>
+                        <th scope="col" class="text-center">Tipo de Cama</th>
+                        <th scope="col" class="text-center">Precio</th>
+                        <th scope="col" class="text-center">Estado</th>
+                        <th scope="col" class="text-center">Modificar</th>
+                        <th scope="col" class="text-center">Dar de Alta</th>
                     </thead>
-                    <tbody>
+                    <tbody class="table-group-divider">
                         <?php
                         if($habitaciones != null) {
                             foreach($habitaciones as $hab) {
                                 if ($hab['estado'] == 'Deshabilitado') {
             ?>
                         <tr scope="row">
-                            <td><?= $hab['nro_piso'] ?></td>
-                            <td><?= $hab['nro_hab'] ?></td>
-                            <td><?= $hab['tipo_hab'] ?></td>
-                            <td><?= $hab['cant_camas'] ?></td>
-                            <td><?= $hab['tipo_cama'] ?></td>
-                            <td><?= $hab['precio'] ?></td>
-                            <td><?= $hab['estado'] ?></td>
-                            <td><button class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button></td>
-                            <td><a class="btn btn-success" href="<?= base_url('dar_alta_habitacion/'. trim($hab['id_hab'])) ?>"><i class="fa-solid fa-arrow-up-from-bracket"></i></a></td>
+                            <td class="text-center"><?= $hab['nro_piso'] ?></td>
+                            <td class="text-center"><?= $hab['nro_hab'] ?></td>
+                            <td class="text-center"><?= $hab['tipo_hab'] ?></td>
+                            <td class="text-center"><?= $hab['cant_camas'] ?></td>
+                            <td class="text-center"><?= $hab['tipo_cama'] ?></td>
+                            <td class="text-center"><?= $hab['precio'] ?></td>
+                            <td class="text-center"><?= $hab['estado'] ?></td>
+                            <td class="text-center"><button class="btn btn-outline-warning"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                            <td class="text-center"><a class="btn btn-outline-success" href="<?= base_url('dar_alta_habitacion/'. trim($hab['id_hab'])) ?>"><i class="fa-solid fa-arrow-up-from-bracket"></i></a></td>
                         </tr>
                         <?php
                                 }
@@ -196,7 +196,7 @@
         </div>
 
 
-        <div class="row ">
+        <div class="row my-3">
             <div class="col d-flex justify-content-end">
                 <a id="btn_agregar_hab" class="btn btn-outline-success" href="<?= base_url('agregar_habitacion') ?>"> <i
                         class="fa-solid fa-plus"></i> Agregar habitación</a>

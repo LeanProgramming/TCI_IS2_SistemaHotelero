@@ -15,8 +15,18 @@ class Home extends BaseController
         return view('templates/header', $data)
         .view('templates/navbar')
         .view('pages/home')
-        .view('templates/footer')
-        ;
+        .view('templates/footer');
+    }
+
+    public function en_construccion() {
+        $data = [
+            'titulo' => 'En construcción'
+        ];
+
+        return view('templates/header', $data)
+        .view('templates/navbar')
+        .view('templates/en_construccion')
+        .view('templates/footer');
     }
 
     public function gestion_habitaciones() {
@@ -28,7 +38,6 @@ class Home extends BaseController
         return view('templates/header', $data)
         .view('templates/navbar')
         .view('pages/admin/gestion_habitacion')
-        .view('templates/footer')
-        ;
+        .view('templates/footer');
     }
 }

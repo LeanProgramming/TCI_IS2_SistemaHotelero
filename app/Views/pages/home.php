@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Paraná</title>
-</head>
-<body>
-    <div class="container d-flex flex-column">
-        <div class="mt-auto mb-auto">
-            <h1>Bienvenido Administrador</h1>
+<div class="container mt-5 mb-5" style="height:50vh;">
+    <div class="row align-items-center h-100">
+        <div class="col">
+            <h1 class="text-center">Bienvenido Administrador</h1>
         </div>
     </div>
-</body>
-</html>
+</div>

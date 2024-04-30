@@ -6,6 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
+$routes->get('en_construccion', 'Home::en_construccion');
 
 ////---------------Espacio admin-------------
 $routes->get('gestion_habitaciones', 'Home::gestion_habitaciones');

@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="<?= base_url('assets/img/logo/favicon.ico') ?>" type="image/x-icon">
 
     <link rel="stylesheet" href="<?= base_url('assets/bootstrap/css/bootstrap.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/style.css')?>">
     <title><?= esc($titulo) ?></title>
    
 </head>

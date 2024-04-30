@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+25&family=Kaushan+Script&family=Poltawski+Nowy:ital,wght@0,400..700;1,400..700&family=Protest+Riot&display=swap');
+
+:root {
+    --fondo: #d6d2f6;
+
+    --primario-1: #2f509f;
+    --primario-2: #4966ab;
+    --primario-3: #637cb7;
+    --primario-4: #7d92c3;
+    --primario-5: #97a8cf;
+    --primario-6: #b1bddb;
+    --primario-7: #cbd3e7;
+    --primario-8: #e5e9f3;
+
+    --sombra-1: #0c1428;
+    --sombra-2: #121e3c;
+    --sombra-3: #182850;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    color: var(--primario-1) !important;
+    text-align: justify;
+    font-family:'Poltawski Nowy', serif;
+}
+
+.fondo-1 {
+    background-color: var(--fondo);
+}
+.fondo-2 {
+    background-color: var(--primario-8);
+}
+.sombra-der {box-shadow: 5px 5px 10px rgba(12, 20, 40, 0.75);}
+.sombra-izq {box-shadow: 5px 5px 5px rgba(12, 20, 40, 0.75);}
+.sombra-arriba {box-shadow: 0px -10px 5px rgba(12, 20, 40, 0.75);}
+.sombra-abajo {box-shadow: 0px 5px 5px rgba(12, 20, 40, 0.25);}
+.sombra-x {box-shadow: -5px 5px 15px rgba(12, 20, 40, 0.75), 5px 5px 15px rgba(12, 20, 40, 0.75);}
+.sombra-y {box-shadow: 5px -10px 15px rgba(12, 20, 40, 0.5), -5px 10px 15px rgba(12, 20, 40, 0.5);}
+
+.borde-btn {
+    border-color: var(--primario-2);
+}
+.borde-1 {
+    border: 2px solid var(--sombra-3);
+}
