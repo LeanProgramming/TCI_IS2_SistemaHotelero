@@ -102,8 +102,8 @@
 
         <div class="row my-3">
             <div class="col">
-                <button id="btn_hab_alta" class="btn btn-outline-primary" disabled>Habitaciones de alta</button>
-                <button id="btn_hab_baja" class="btn btn-outline-danger">Habitaciones de baja</button>
+                <button id="btn_hab_alta" class="btn btn-outline-primary btn-hover" disabled>Habitaciones de alta</button>
+                <button id="btn_hab_baja" class="btn btn-outline-danger btn-hover">Habitaciones de baja</button>
             </div>
         </div>
         <div class="row text-center">
@@ -198,8 +198,8 @@
 
         <div class="row my-3">
             <div class="col d-flex justify-content-end">
-                <a id="btn_agregar_hab" class="btn btn-outline-success" href="<?= base_url('agregar_habitacion') ?>"> <i
-                        class="fa-solid fa-plus"></i> Agregar habitación</a>
+                <a id="btn_agregar_hab" class="btn btn-outline-success btn-hover" href="<?= base_url('agregar_habitacion') ?>"> <i
+                        class="fa-solid fa-plus "></i> Agregar habitación</a>
             </div>
         </div>
 

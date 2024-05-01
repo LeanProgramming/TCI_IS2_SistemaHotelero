@@ -29,37 +29,12 @@ class HabitacionController extends BaseController
             $xml->asXML(FCPATH. '\assets\xml\habitaciones.xml');
 
             return redirect()->to(base_url('/gestion_habitaciones'));
-
-            /*
-            if(session()->has('habitaciones'))   {
-                $nro_piso = session()->get('nro_piso');
-                $tipo_hab = session()->get('tipo_hab');
-                $tipo_cama = session()->get('tipo_cama');
-
-                $hab = [
-                'id_hab' => $_POST['id_hab'],
-                'nro_piso' => $_POST['nro_piso'],
-                'nro_hab' => $_POST['nro_hab'],
-                'tipo_hab' => $_POST['tipo_hab'],
-                'cant_camas' => $_POST['cant_camas'],
-                'tipo_cama' => $_POST['tipo_cama'],
-                'precio' => $_POST['precio'],
-                'estado' => 1
-                ];
-
-                session()->push('habitaciones', [$hab]);
-                
-               return redirect()->to(base_url('/gestion_habitaciones'));
-            } else {
-                echo "<h1> No funciona </h1>";
-            }
-           */
         }
 
         return view('templates/header', $data)
         .view('templates/navbar')
         .view('pages/admin/habitaciones/agregar_habitacion')
-        .view('templates/footer');
+        .view('templates/closer');
     }
 
     public function dar_baja_habitacion($id) {

@@ -47,8 +47,8 @@ $ultima_hab = $habs[sizeof($habs)-1];
                     </select>
                 </div>
                 <div class="col align-self-center">
-                    <a class="btn btn-sm btn-outline-success" href=""><i class="fa-solid fa-plus"></i></a>
-                    <a class="btn btn-sm btn-outline-danger" href=""><i class="fa-solid fa-minus"></i></a>
+                    <a class="btn btn-sm btn-outline-success btn-hover" href=""><i class="fa-solid fa-plus"></i></a>
+                    <a class="btn btn-sm btn-outline-danger btn-hover" href=""><i class="fa-solid fa-minus"></i></a>
                 </div>
             </div>
             
@@ -65,7 +65,7 @@ $ultima_hab = $habs[sizeof($habs)-1];
                     </select>
                 </div>
                 <div class="col align-self-center d-flex justify-content-center">
-                    <a class="btn btn-sm btn-outline-success" href="">Agregar Tipo Habitación</a>
+                    <a class="btn btn-sm btn-outline-success btn-hover" href="">Agregar Tipo Habitación</a>
                 </div>
             </div>
             
@@ -86,7 +86,7 @@ $ultima_hab = $habs[sizeof($habs)-1];
                     </select>
                 </div>
                 <div class="col align-self-center d-flex justify-content-center">
-                    <a class="btn btn-sm btn-outline-success" href="">Agregar Tipo Habitación</a>
+                    <a class="btn btn-sm btn-outline-success btn-hover" href="">Agregar Tipo Habitación</a>
                 </div>
             </div>
             
@@ -94,7 +94,7 @@ $ultima_hab = $habs[sizeof($habs)-1];
             <label for="hab-precio" class="form-label">Precio</label>
             <input required class="form-control mb-3" type="number" value="" id="hab-precio" name="precio" min="0" step="0.01" placeholder="Precio Habitación">
 
-            <button class="btn btn-outline-success w-50 my-3 fondo-2 borde-btn align-self-center" type="submit">Agregar Habitación</button>
+            <button class="btn btn-outline-success w-50 my-3 fondo-2 borde-btn align-self-center btn-hover" type="submit">Agregar Habitación</button>
 
         </form>
     </div>

@@ -22,7 +22,9 @@
 		<precio>
 			3500
 		</precio>
-		<estado>1</estado>
+		<estado>
+			1
+		</estado>
 	</habitacion>
 	<habitacion>
 		<id_hab>
@@ -124,7 +126,9 @@
 		<precio>
 			5500
 		</precio>
-		<estado>1</estado>
+		<estado>
+			1
+		</estado>
 	</habitacion>
 	<habitacion>
 		<id_hab>
@@ -148,7 +152,9 @@
 		<precio>
 			5500
 		</precio>
-		<estado>3</estado>
+		<estado>
+			3
+		</estado>
 	</habitacion>
 	<habitacion>
 		<id_hab>
@@ -172,8 +178,8 @@
 		<precio>
 			700
 		</precio>
-		<estado>3</estado>
+		<estado>
+			3
+		</estado>
 	</habitacion>
-	
-	
-<habitacion><id_hab>8</id_hab><nro_hab>0</nro_hab><nro_piso>0</nro_piso><tipo_hab>0</tipo_hab><cant_camas/><tipo_cama>0</tipo_cama><precio/><estado>3</estado></habitacion><habitacion><id_hab>9</id_hab><nro_hab>0</nro_hab><nro_piso>0</nro_piso><tipo_hab>0</tipo_hab><cant_camas/><tipo_cama>0</tipo_cama><precio/><estado>3</estado></habitacion></habitaciones>
+</habitaciones>
