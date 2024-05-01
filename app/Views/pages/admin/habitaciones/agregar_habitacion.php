@@ -40,7 +40,7 @@ $ultima_hab = $habs[sizeof($habs)-1];
                 <div class="col-10">
                     <label for="nro_piso" class="form-label">Nro. de Piso</label>
                     <select class="form-select mb-3" aria-label="nro_piso" name="nro_piso"  id="nro_piso">
-                        <option selected value='0' disabled>Seleccionar una subclasificación</option>
+                        <option selected value='0' disabled>Seleccionar un piso</option>
                         <option value='1'>Primer Piso</option>
                         <option value='2'>Segundo Piso</option>
                         <option value='3'>Tercer Piso</option>
@@ -57,7 +57,7 @@ $ultima_hab = $habs[sizeof($habs)-1];
                 <div class="col-8">
                     <label for="tipo_hab" class="form-label">Tipo de Habitación</label>
                     <select required  class="form-select mb-3" aria-label="tipo_hab" name="tipo_hab"  id="tipo_hab">
-                        <option selected value='0' disabled>Seleccionar una subclasificación</option>
+                        <option selected value='0' disabled>Seleccionar un tipo de habitación</option>
                         <option value='1'>Simple</option>
                         <option value='2'>Doble</option>
                         <option value='3'>Ejecutiva</option>
@@ -77,7 +77,7 @@ $ultima_hab = $habs[sizeof($habs)-1];
                 <div class="col-8">
                     <label required  for="tipo_cama" class="form-label">Tipo de Cama</label>
                     <select class="form-select mb-3" aria-label="tipo_cama" name="tipo_cama"  id="tipo_cama">
-                        <option selected value='0' disabled>Seleccionar una subclasificación</option>
+                        <option selected value='0' disabled>Seleccionar un tipo de cama</option>
                         <option value='1'>1 Plaza</option>
                         <option value='1'>1 1/2 Plaza</option>
                         <option value='2'>2 Plazas</option>
@@ -86,7 +86,7 @@ $ultima_hab = $habs[sizeof($habs)-1];
                     </select>
                 </div>
                 <div class="col align-self-center d-flex justify-content-center">
-                    <a class="btn btn-sm btn-outline-success btn-hover" href="">Agregar Tipo Habitación</a>
+                    <a class="btn btn-sm btn-outline-success btn-hover" href="">Agregar Tipo Cama</a>
                 </div>
             </div>
             
