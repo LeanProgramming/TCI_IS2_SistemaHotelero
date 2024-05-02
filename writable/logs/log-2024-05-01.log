@@ -306,3 +306,102 @@ in APPPATH\Views\pages\recepcion.php on line 19.
  9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
 10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
 11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-05-01 23:31:17 --> ParseError: syntax error, unexpected variable "$habs", expecting "," or ";"
+[Method: GET, Route: agregar_habitacion]
+in APPPATH\Views\pages\admin\habitaciones\agregar_habitacion.php on line 5.
+ 1 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/habitaciones/agregar_habitacion', [], true)
+ 3 APPPATH\Controllers\HabitacionController.php(36): view('pages/admin/habitaciones/agregar_habitacion')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\HabitacionController->agregar_habitacion()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HabitacionController))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-05-01 23:36:44 --> Error: Class "HabitacionModel" not found
+[Method: GET, Route: gestion_habitaciones]
+in APPPATH\Views\pages\admin\gestion_habitacion.php on line 4.
+ 1 SYSTEMPATH\View\View.php(234): include()
+ 2 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/gestion_habitacion', [], true)
+ 4 APPPATH\Controllers\Home.php(54): view('pages/admin/gestion_habitacion')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->gestion_habitaciones()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-05-01 23:37:08 --> ErrorException: Undefined variable $xml_pisos
+[Method: GET, Route: gestion_habitaciones]
+in APPPATH\Views\pages\admin\gestion_habitacion.php on line 12.
+ 1 APPPATH\Views\pages\admin\gestion_habitacion.php(12): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $xml_pisos', 'C:\\xampp\\htdocs\\sistema_hotelero\\app\\Views\\pages\\admin\\gestion_habitacion.php', 12)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\sistema_hotelero\\app\\Views\\pages\\admin\\gestion_habitacion.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/gestion_habitacion', [], true)
+ 5 APPPATH\Controllers\Home.php(54): view('pages/admin/gestion_habitacion')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->gestion_habitaciones()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-05-01 23:46:33 --> Error: Class "PisoModel" not found
+[Method: GET, Route: gestion_habitaciones]
+in APPPATH\Views\pages\admin\gestion_habitacion.php on line 6.
+ 1 SYSTEMPATH\View\View.php(234): include()
+ 2 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/gestion_habitacion', [], true)
+ 4 APPPATH\Controllers\Home.php(54): view('pages/admin/gestion_habitacion')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->gestion_habitaciones()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-05-01 23:47:10 --> CodeIgniter\Database\Exceptions\DatabaseException: You must set the database table to be used with your query.
+[Method: GET, Route: gestion_habitaciones]
+in SYSTEMPATH\Database\BaseConnection.php on line 913.
+ 1 SYSTEMPATH\Model.php(705): CodeIgniter\Database\BaseConnection->table(null)
+ 2 SYSTEMPATH\Model.php(911): CodeIgniter\Model->builder()
+ 3 APPPATH\Views\pages\admin\gestion_habitacion.php(11): CodeIgniter\Model->__call('obtenerTiposHabitacion', [])
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\sistema_hotelero\\app\\Views\\pages\\admin\\gestion_habitacion.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/gestion_habitacion', [], true)
+ 7 APPPATH\Controllers\Home.php(54): view('pages/admin/gestion_habitacion')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->gestion_habitaciones()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-05-01 23:47:38 --> CodeIgniter\Database\Exceptions\DatabaseException: You must set the database table to be used with your query.
+[Method: GET, Route: gestion_habitaciones]
+in SYSTEMPATH\Database\BaseConnection.php on line 913.
+ 1 SYSTEMPATH\Model.php(705): CodeIgniter\Database\BaseConnection->table(null)
+ 2 SYSTEMPATH\Model.php(911): CodeIgniter\Model->builder()
+ 3 APPPATH\Views\pages\admin\gestion_habitacion.php(11): CodeIgniter\Model->__call('obtenerTiposHabitacion', [])
+ 4 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\sistema_hotelero\\app\\Views\\pages\\admin\\gestion_habitacion.php')
+ 5 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/gestion_habitacion', [], true)
+ 7 APPPATH\Controllers\Home.php(54): view('pages/admin/gestion_habitacion')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->gestion_habitaciones()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-05-01 23:47:52 --> ErrorException: Undefined variable $xml_estados
+[Method: GET, Route: gestion_habitaciones]
+in APPPATH\Models\EstadoModel.php on line 16.
+ 1 APPPATH\Models\EstadoModel.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $xml_estados', 'C:\\xampp\\htdocs\\sistema_hotelero\\app\\Models\\EstadoModel.php', 16)
+ 2 APPPATH\Views\pages\admin\gestion_habitacion.php(13): App\Models\EstadoModel->obtenerEstados()
+ 3 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\sistema_hotelero\\app\\Views\\pages\\admin\\gestion_habitacion.php')
+ 4 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/gestion_habitacion', [], true)
+ 6 APPPATH\Controllers\Home.php(54): view('pages/admin/gestion_habitacion')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->gestion_habitaciones()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(312): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

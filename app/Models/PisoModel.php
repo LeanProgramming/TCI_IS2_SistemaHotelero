@@ -9,7 +9,7 @@ class PisoModel extends Model
     protected $nombre;
 
 
-    public function get_pisos() {
+    public function obtenerPisos() {
         $pisos = [];
         $xml_pisos = simplexml_load_file(base_url('assets/xml/pisos.xml'));
 
