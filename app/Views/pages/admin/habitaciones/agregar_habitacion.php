@@ -8,13 +8,6 @@ $habs = (new HabitacionModel)->obtenerHabitaciones();
 $ultima_hab = $habs[sizeof($habs)-1];
 
 ?>
-<?php 
-if(isset($errores)) {
-    var_dump($errores);
-    echo "<h1>Hay errores</h1>";
-} else {
-    echo "<h1>NO Hay errores</h1>";
-} ?>
 <div class="container fondo-2 w-50 my-3 p-4 sombra-x rounded">
     <div class="agregar_hab_header">
         <a class="btn btn-outline-primary" href="<?= base_url('gestion_habitaciones') ?>"><i class="fa-solid fa-chevron-left"></i></a>
