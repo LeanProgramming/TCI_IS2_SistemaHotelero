@@ -48,15 +48,15 @@ class HabitacionModel extends Model
     }
 
     public function verificarHabitacion($nro_piso=null,$nro_hab,$tipo_hab,$cant_camas,$tipo_cama,$precio=null,$estado) {
-        return $this->verificarNroHab($nro_hab) && $this->verificarPrecio($precio) && $this->verificarPiso($nro_piso) &&
+        return $this->verificarNroHab($nro_hab, $nro_piso) && $this->verificarPrecio($precio) && $this->verificarPiso($nro_piso) &&
         $this->verificarTipoHab($tipo_hab) && $this->verificarTipoCama($tipo_cama);
     }
 
-    public function verificarNroHab($nro_hab) {
+    public function verificarNroHab($nro_hab, $nro_piso) {
         $habitaciones = $this->obtenerHabitaciones();
 
         foreach($habitaciones as $hab) {
-            if($hab['nro_hab'] == $nro_hab) {
+            if($hab['nro_hab'] == $nro_hab && $hab['nro_piso'] == $nro_piso) {
                 return false;
             }
         }
@@ -93,7 +93,7 @@ class HabitacionModel extends Model
 
     public function errorHabitaciones($nro_piso,$nro_hab,$tipo_hab,$cant_camas,$tipo_cama,$precio,$estado) {
         $errores=[];
-        if(!$this->verificarNroHab($nro_hab)){$errores['nro_hab'] = 'Ya existe el nro de habitación ingresado.';}
+        if(!$this->verificarNroHab($nro_hab, $nro_piso)){$errores['nro_hab'] = 'Ya existe el nro de habitación ingresado.';}
         if(!$this->verificarPrecio($precio)){$errores['precio'] = 'Debe ingresar un precio.';}
         if(!$this->verificarPrecio($nro_piso)){$errores['nro_piso'] = 'Debe ingresar un número de piso.';}
         if(!$this->verificarPrecio($tipo_hab)){$errores['tipo_hab'] = 'Debe ingresar un tipo de habitación.';}
