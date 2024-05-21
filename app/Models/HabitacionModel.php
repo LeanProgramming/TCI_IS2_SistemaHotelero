@@ -5,6 +5,12 @@ use CodeIgniter\Model;
 
 class HabitacionModel extends Model
 {
+    protected $table = "habitacion";
+    protected $primaryKey = 'id_habitacion';
+
+    protected $returnType = 'array';
+
+
     protected $id_hab;
     protected $nro_piso;
     protected $nro_hab;
