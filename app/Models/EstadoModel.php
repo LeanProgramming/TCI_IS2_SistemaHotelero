@@ -7,23 +7,14 @@ class EstadoModel extends Model
     protected $id_estado;
     protected $nombre;
 
+    protected $table = "estado";
+    protected $primaryKey = 'id_estado';
 
-    public function obtenerEstados() {
-        $estados = [];
-        $xml_estados = simplexml_load_file(base_url('assets/xml/estados_hab.xml'));
+    protected $returnType = 'array';
+    protected $allowedFields = ['nombre'];
 
-        //Cargar en la variable de estados
-        foreach($xml_estados->estado as $estado) {
-            $e = [
-                'id_estado' => $estado->id_estado,
-                'nombre' => $estado->nombre,
-            ];
+    protected $skipValidation = false;
 
-            array_push($estados, $e);
-        }
-
-        return $estados;
-    }
 }
 
 

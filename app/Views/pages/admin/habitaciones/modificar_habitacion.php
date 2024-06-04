@@ -1,22 +1,22 @@
 <div class="container fondo-2 w-50 my-3 p-4 sombra-x rounded">
-    <div class="agregar_hab_header">
+    <div class="modificar_hab_header">
         <a class="btn btn-outline-primary" href="<?= base_url('gestion_habitaciones') ?>"><i class="fa-solid fa-chevron-left"></i></a>
-        <h1 class="text-center">Agregar Habitación</h1>
+        <h1 class="text-center">Modificar Habitación</h1>
     </div>
-    <div class="agregar-body">
-        <form class="d-flex flex-column align-items-stretch" action="<?= base_url('/agregar_habitacion') ?>" method="post"  enctype="multipart/form-data">            
+    <div class="modificar-body">
+        <form class="d-flex flex-column align-items-stretch" action="<?= base_url('modificar_habitacion/'. $hab['id_habitacion']) ?>" method="post"  enctype="multipart/form-data">            
             <label for="nro_hab" class="form-label">Nro. de Habitación</label>
-            <input class="form-control mb-3" type="number" value="<?= set_value('nro_habitacion')?>" min=1 id="nro_hab" name="nro_habitacion" placeholder="Número de Habitación">
+            <input disabled class="form-control mb-3" type="number" value="<?= $hab['nro_habitacion']?>" min=1 id="nro_hab" name="nro_habitacion" placeholder="Número de Habitación">
             <?php if(isset($errores['nro_habitacion'])) {echo '<p class="text-danger">* '.$errores['nro_habitacion'].'</p>';} ?>
 
             <div class="row">
                 <div class="col-10">
                     <label for="nro_piso" class="form-label">Nro. de Piso</label>
-                    <select class="form-select mb-3" aria-label="nro_piso" name="id_piso"  id="nro_piso">
+                    <select disabled class="form-select mb-3" aria-label="nro_piso" name="id_piso"  id="nro_piso">
                         <option selected value='0' disabled>Seleccionar un piso</option>
-                        <?php foreach($pisos as $piso) { ?>
-                        <option value='<?= $piso['id_piso'] ?>' <?= set_select('id_piso', $piso['id_piso']) ?> ><?= $piso['nombre_piso']?></option>
-                        <?php } ?>
+                        <option value='1' <?= ($hab['id_piso'] == 1) ? 'selected' : ''?> >Primer Piso</option>
+                        <option value='2' <?= ($hab['id_piso'] == 2) ? 'selected' : ''?> >Segundo Piso</option>
+                        <option value='3' <?= ($hab['id_piso'] == 3) ? 'selected' : ''?> >Tercer Piso</option>
                     </select>
                 </div>
                 <div class="col align-self-center">
@@ -30,10 +30,10 @@
             <div class="row">
                 <div class="col-8">
                     <label for="tipo_hab" class="form-label">Tipo de Habitación</label>
-                    <select class="form-select mb-3 select-tipoHab" aria-label="tipo_hab" name="id_tipoHab"  id="tipo_hab">
+                    <select required  class="form-select mb-3 select-tipoHab" aria-label="tipo_hab" name="id_tipoHab"  id="tipo_hab">
                         <option selected value='0' disabled>Seleccionar un tipo de habitación</option>
                         <?php foreach($tiposHab as $tipo) { ?>
-                            <option class="<?= $tipo['precio'] ?>" value='<?= $tipo['id_tipoHab'] ?>' <?= set_select('id_tipoHab', $tipo['id_tipoHab'])?>><?= $tipo['nombre'] ?></option>
+                            <option class="<?= $tipo['precio'] ?>" value='<?= $tipo['id_tipoHab'] ?>' <?= set_select('id_tipoHab', $tipo['id_tipoHab'], $hab['id_tipoHab'] == $tipo['id_tipoHab'] ? true : false)?>><?= $tipo['nombre'] ?></option>
                         <?php }?>
                     </select>
                 </div>
@@ -45,15 +45,15 @@
             
 
             <label for="cant_camas" class="form-label">Cantidad de camas </label>
-            <input class="form-control mb-3" type="number" value="<?= set_value('cantidad_camas') ?>" id="cant_camas" name="cantidad_camas" min=1 placeholder="Cantidad de Camas">
+            <input required class="form-control mb-3" type="number" value="<?= $hab['cantidad_camas'] ?>" id="cant_camas" name="cantidad_camas" min=1 placeholder="Cantidad de Camas">
             
             <div class="row">
                 <div class="col-8">
-                    <label for="tipo_cama" class="form-label">Tipo de Cama</label>
+                    <label required  for="tipo_cama" class="form-label">Tipo de Cama</label>
                     <select class="form-select mb-3 select-tipoCama" aria-label="tipo_cama" name="id_tipoCama"  id="tipo_cama">
                         <option selected value='0' disabled>Seleccionar un tipo de cama</option>
                         <?php foreach($tiposCama as $tipo) { ?>
-                            <option class="<?= $tipo['precio'] ?>"value='<?= $tipo['id_tipoCama'] ?>' <?= set_select('id_tipo', $tipo['id_tipoCama'])?>><?= $tipo['descripcion'] ?></option>
+                            <option class="<?= $tipo['precio'] ?>"value='<?= $tipo['id_tipoCama'] ?>' <?= set_select('id_tipoCama', $tipo['id_tipoCama'], $hab['id_tipoCama'] == $tipo['id_tipoCama'] ? true : false)?>><?= $tipo['descripcion'] ?></option>
                         <?php }?>
                     </select>
                 </div>
@@ -65,10 +65,10 @@
             
 
             <label for="hab-precio" class="form-label">Precio</label>
-            <input class="form-control mb-3" type="number" value="<?= set_value('precio') ?>" id="hab-precio" name="precio" min="0" step="0.01" placeholder="Precio Habitación">
+            <input class="form-control mb-3" type="number" value="<?= $hab['precio'] ?>" id="hab-precio" name="precio" min="0" step="0.01" placeholder="Precio Habitación">
             <?php if(isset($errores['precio'])) {echo '<p class="text-danger">* '.$errores['precio'].'</p>';} ?>
 
-            <button class="btn btn-outline-success w-50 my-3 fondo-2 borde-btn align-self-center btn-hover" type="button" data-bs-toggle="modal" data-bs-target="#modal_confirmacion">Agregar Habitación</button>
+            <button class="btn btn-outline-success w-50 my-3 fondo-2 borde-btn align-self-center btn-hover" type="button" data-bs-toggle="modal" data-bs-target="#modal_confirmacion">Modificar Habitación</button>
 
             <!--Modal de confirmación-->
             <div class="modal fade" id="modal_confirmacion" tabindex="-1" aria-labelledby="modalConfirmacion" aria-hidden="true">
@@ -79,7 +79,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>¿Desea guardar la habitación?</p>
+                        <p>¿Desea confirmar los cambios?</p>
                     </div>
                     <div class="modal-footer d-flex justify-content-center align-items-center">
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>

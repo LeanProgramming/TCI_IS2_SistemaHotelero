@@ -11,7 +11,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
-      <ul class="navbar-nav mb-2 mb-lg-0 w-100 justify-content-end gap-2">
+      <ul class="navbar-nav mb-2 mb-lg-0 w-100 justify-content-end align-items-center gap-2">
         <li class="nav-item btn btn-m p-0 btn-outline-light borde-btn">
           <a class="nav-link " aria-current="page" href="<?= base_url('/') ?>">Inicio</a>
         </li>
@@ -33,8 +33,9 @@
         <li class="nav-item btn btn-m p-0 btn-outline-light borde-btn">
           <a class="nav-link" aria-current="page" href="<?= base_url('en_construccion') ?>">Perfil</a>
         </li>
-        <li class="nav-item btn btn-m p-0 btn-outline-light borde-btn">
-          <a class="nav-link" aria-current="page" href="#">Salir</a>
+        <li class="nav-item btn btn-m p-1 btn-outline-secondary ">
+          <i class="fa-solid fa-arrow-right-from-bracket p-0 m-0"></i>
+          <a class="nav-link m-0 p-0" aria-current="page" href="#">Salir</a>
         </li>
       </ul>
     </div>
