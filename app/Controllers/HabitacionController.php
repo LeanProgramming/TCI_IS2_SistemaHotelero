@@ -17,7 +17,7 @@ class HabitacionController extends BaseController
     }
 
     public function index () {
-        $response = $this->client->request('GET', base_url('api/habitaciones'));
+        $response = $this->client->request('GET', base_url('api/habitaciones/get'));
         $data['habitaciones'] = json_decode($response->getBody(), true);
 
         $habitaciones = $data['habitaciones'];
@@ -30,7 +30,7 @@ class HabitacionController extends BaseController
 
         return view('templates/header', $data)
         .view('templates/navbar')
-        .view('pages/admin/gestion_habitacion')
+        .view('pages/admin/habitaciones/gestion_habitacion')
         .view('templates/footer')
         .view('templates/closer');
     }
