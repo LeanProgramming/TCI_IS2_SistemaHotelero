@@ -39,12 +39,12 @@ class Home extends BaseController
     }
 
     public function recepcion() {
-
         $data = [
             'titulo' => 'Recepción',
         ];
 
-        $data['habitaciones'] = HabitacionModel::obtenerHabitaciones();
+        $response = $this->client->request('GET', base_url('api/habitaciones/get'));
+        $data['habitaciones'] = json_decode($response->getBody(), true);
         
         $resp = $this->client->request('GET', base_url('api/pisos'));
         $data['pisos'] = json_decode($resp->getBody(), true);

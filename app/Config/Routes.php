@@ -21,11 +21,13 @@ $routes->get('dar_alta_habitacion/(:num)', 'HabitacionController::dar_alta_habit
 $routes->get('modificar_habitacion/(:num)', 'HabitacionController::modificar_habitacion/$1');
 $routes->post('modificar_habitacion/(:num)', 'HabitacionController::modificar_habitacion/$1');
 
+
 //----------------------API REST------------------
 
 $routes->group('api', ['namespace' => 'App\Controllers\API'], function($routes) {
 //------------Habitaciones---------------
     $routes->get('habitaciones', 'Habitaciones::index');
+    $routes->get('habitaciones/get', 'Habitaciones::getDetalleHabitaciones');
     $routes->post('habitaciones/create', 'Habitaciones::create');
     $routes->get('habitaciones/edit/(:num)', 'Habitaciones::edit/$1');
     $routes->put('habitaciones/update/(:num)', 'Habitaciones::update/$1');
