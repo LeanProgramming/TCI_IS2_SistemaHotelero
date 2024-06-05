@@ -8,6 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 $routes->get('en_construccion', 'Home::en_construccion');
 $routes->get('recepcion', 'Home::recepcion');
+$routes->get('/login', 'LoginController::index');
 
 ////---------------Espacio admin-------------
 
@@ -40,6 +41,14 @@ $routes->group('api', ['namespace' => 'App\Controllers\API'], function($routes) 
 
 //-------------Tipos de Cama----------------------
     $routes->get('tiposCama', 'TiposCama::index');
+
+//-------------Usuarios----------------------
+    $routes->get('usuarios', 'Usuarios::index');
+    $routes->post('usuarios/create', 'Usuarios::create');
+    $routes->get('usuarios/edit/(:num)', 'Usuarios::edit/$1');
+    $routes->put('usuarios/update/(:num)', 'Usuarios::update/$1');
+    $routes->put('usuarios/delete/(:num)', 'Usuarios::delete/$1');
+    $routes->put('usuarios/activate/(:num)', 'Usuarios::activate/$1');
 });
 
 
