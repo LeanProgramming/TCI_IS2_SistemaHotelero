@@ -9,8 +9,10 @@ class UsuarioModel extends Model
     protected $primaryKey = 'id_usuario';
 
     protected $returnType = 'array';
-    protected $allowedFields = ['nombre', 'apellido', 'fecha_nac', 'nro_documento', 'telefono', 'nombre_usuario', 'contraseña', 'esBaja', 'id_perfil'];
+    protected $allowedFields = ['nombre', 'apellido', 'fecha_nac', 'nro_documento', 'telefono', 'nombre_usuario', 'password', 'esBaja', 'id_perfil'];
 
+    protected $beforeInsert = ['hashPassword'];
+    protected $beforeUpdate = ['hashPassword'];
 
     protected $validationRules = [
         'nombre' => 'required',
@@ -19,7 +21,7 @@ class UsuarioModel extends Model
         'nro_documento' => 'required',
         'telefono' => 'required',
         'nombre_usuario' => 'required',
-        'contraseña' => 'required',
+        'password' => 'required',
         'id_perfil' => 'required'
     ];
 
@@ -42,8 +44,8 @@ class UsuarioModel extends Model
         'nombre_usuario' => [
             'required' => 'Debe ingresar un nombre de usuario.'
         ],
-        'contraseña' => [
-            'required' => 'Debe ingresar una contraseña.'
+        'password' => [
+            'required' => 'Debe ingresar una password.'
         ],
         'id_perfil' => [
             'required' => 'Debe ingresar un tipo de perfil.'
@@ -55,6 +57,17 @@ class UsuarioModel extends Model
 
     public static function obtenerUsuarios() {
         return (new UsuarioModel())->findAll();
+    }
+
+    protected function hashPassword(array $data)
+    {
+        if (!isset($data['data']['password'])) {
+            return $data;
+        }
+
+        $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_BCRYPT);
+
+        return $data;
     }
 }
 
