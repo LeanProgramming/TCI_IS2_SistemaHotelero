@@ -18,6 +18,11 @@ class Home extends BaseController
         $data = [
             'titulo' => 'Hotel Paraná'
         ];
+        $usuario = null;
+
+        if($usuario == null) {
+            return 'Sin usuario';
+        }
 
         return view('templates/header', $data)
         .view('templates/navbar')

@@ -16,3 +16,4 @@
     <title><?= esc($titulo) ?></title>
    
 </head>
+<body class="fondo-1">

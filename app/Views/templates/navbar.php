@@ -1,5 +1,3 @@
-<body class="fondo-1">
-    
 <section class='fondo-2 sombra-abajo rounded-bottom'>
 <nav class="navbar navbar-expand-lg ">
   <div class="container-fluid mx-3">
