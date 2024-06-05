@@ -146,6 +146,12 @@ class Habitaciones extends ResourceController
             return $this->failServerError('Ha ocurrido un error en el servidor');
         }
     }
+
+    public function getDetalleHabitaciones()
+    {
+        $habitaciones = $this->model->obtenerHabitaciones();
+        return $this->respond($habitaciones);
+    }
 }
 
 

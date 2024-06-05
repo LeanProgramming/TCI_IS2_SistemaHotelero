@@ -46,8 +46,21 @@ class HabitacionModel extends Model
     protected $skipValidation = false;
 
 
-    public static function obtenerHabitaciones() {
-        return (new HabitacionModel())->findAll();
+    public function obtenerHabitaciones() {
+        $builder = $this->db->table($this->table);
+        $builder->select('habitacion.*, , , ');
+        $builder->select('estado.nombre AS descp_estado');
+        $builder->select('tipo_cama.descripcion AS descp_tipoCama');
+        $builder->select('tipo_habitacion.nombre AS descp_tipoHab');
+        $builder->select('piso.nombre_piso AS descp_piso');
+        $builder->join('tipo_habitacion', 'tipo_habitacion.id_tipoHab = habitacion.id_tipoHab');
+        $builder->join('tipo_cama', 'tipo_cama.id_tipoCama = habitacion.id_tipoCama');
+        $builder->join('piso', 'piso.id_piso = habitacion.id_piso');
+        $builder->join('estado', 'estado.id_estado = habitacion.id_estado');
+
+        $query = $builder->get();
+
+        return $query->getResult();
     }
 }
 

@@ -31,13 +31,13 @@
                                 if ($hab['id_estado'] != 3) {
                          ?>
                         <tr scope="row">
-                            <td class="text-center"><?= $hab['id_piso'] ?></td>
+                            <td class="text-center"><?= $hab['descp_piso'] ?></td>
                             <td class="text-center"><?= $hab['nro_habitacion'] ?></td>
-                            <td class="text-center"><?= $hab['id_tipoHab'] ?></td>
+                            <td class="text-center"><?= $hab['descp_tipoHab'] ?></td>
                             <td class="text-center"><?= $hab['cantidad_camas'] ?></td>
-                            <td class="text-center"><?= $hab['id_tipoCama'] ?></td>
+                            <td class="text-center"><?= $hab['descp_tipoCama'] ?></td>
                             <td class="text-center">$ <?= $hab['precio'] ?></td>
-                            <td class="text-center"><?= $hab['id_estado'] ?></td>
+                            <td class="text-center"><?= $hab['descp_estado'] ?></td>
                             <td class="text-center"><a href="<?= base_url('modificar_habitacion/'.$hab['id_habitacion']) ?>" class="btn btn-outline-warning"><i
                                         class="fa-solid fa-pen-to-square"></i></a></td>
                             <td class="text-center"><button type="button" class="btn btn-outline-danger"
@@ -100,13 +100,13 @@
                                 if ($hab['id_estado'] == 3) {
                         ?>
                         <tr scope="row">
-                            <td class="text-center"><?= $hab['id_piso'] ?></td>
+                            <td class="text-center"><?= $hab['descp_piso'] ?></td>
                             <td class="text-center"><?= $hab['nro_habitacion'] ?></td>
-                            <td class="text-center"><?= $hab['id_tipoHab'] ?></td>
+                            <td class="text-center"><?= $hab['descp_tipoHab'] ?></td>
                             <td class="text-center"><?= $hab['cantidad_camas'] ?></td>
-                            <td class="text-center"><?= $hab['id_tipoCama'] ?></td>
+                            <td class="text-center"><?= $hab['descp_tipoCama'] ?></td>
                             <td class="text-center">$ <?= $hab['precio'] ?></td>
-                            <td class="text-center"><?= $hab['id_estado'] ?></td>
+                            <td class="text-center"><?= $hab['descp_estado'] ?></td>
                             <td class="text-center"><a href="<?= base_url('modificar_habitacion/'.$hab['id_habitacion']) ?>" class="btn btn-outline-warning"><i
                                         class="fa-solid fa-pen-to-square"></i></a></td>
                             <td class="text-center"><button type="button" class="btn btn-outline-success"
