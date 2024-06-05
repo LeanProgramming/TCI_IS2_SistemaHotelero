@@ -33,7 +33,8 @@ class Usuarios extends ResourceController
                 return json_encode($errors);
             }
         } catch (\Exception $e) {
-            return $this->failServerError('Ha ocurrido un error en el servidor');
+            echo $e;
+            // return $this->failServerError('Ha ocurrido un error en el servidor');
         }
     }
 

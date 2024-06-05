@@ -8,7 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 $routes->get('en_construccion', 'Home::en_construccion');
 $routes->get('recepcion', 'Home::recepcion');
-$routes->get('/login', 'LoginController::index');
+$routes->get('auth/login', 'AuthController::index');
 
 ////---------------Espacio admin-------------
 
