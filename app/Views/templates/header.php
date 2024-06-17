@@ -16,4 +16,4 @@
     <title><?= esc($titulo) ?></title>
    
 </head>
-<body class="fondo-1">
+<body class="fondo-1 container-fluid p-0 d-flex flex-column justify-content-between overflow-scroll" style="height: 100vh">

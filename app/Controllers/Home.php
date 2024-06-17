@@ -2,62 +2,74 @@
 
 namespace App\Controllers;
 
-use App\Models\HabitacionModel;
+use App\Classes\Habitacion;
+use App\Classes\Piso;
 
 class Home extends BaseController
 {
-    protected $client;
+    protected $habitacion;
+    protected $piso;
 
     public function __construct()
     {
-        $this->client = \Config\Services::curlrequest();
+        $this->habitacion = new Habitacion();
+        $this->piso = new Piso();
     }
 
-    public function index(): string
+    public function index()
     {
+        if (!$this->session->is_logged) {
+            return redirect()->to(base_url('/login'));
+        }
+
         $data = [
             'titulo' => 'Hotel Paraná'
         ];
-        $usuario = null;
 
-        if($usuario == null) {
-            return 'Sin usuario';
-        }
+        $usuario = $this->session->get();
+
+        $data['usuario'] = $usuario;
 
         return view('templates/header', $data)
-        .view('templates/navbar')
-        .view('pages/home')
-        .view('templates/footer')
-        .view('templates/closer');
+            . view(($this->session->id_perfil == 1) ? 'templates/navbar_admin' : 'templates/navbar_recep')
+            . view('pages/home')
+            . view('templates/footer')
+            . view('templates/closer');
     }
 
-    public function en_construccion() {
+    public function en_construccion()
+    {
+        if (!$this->session->is_logged) {
+            return redirect()->to(base_url('/login'));
+        }
+
         $data = [
             'titulo' => 'En construcción'
         ];
 
         return view('templates/header', $data)
-        .view('templates/navbar')
-        .view('templates/en_construccion')
-        .view('templates/footer')
-        .view('templates/closer');
+            . view(($this->session->id_perfil == 1) ? 'templates/navbar_admin' : 'templates/navbar_recep')
+            . view('templates/en_construccion')
+            . view('templates/footer')
+            . view('templates/closer');
     }
 
-    public function recepcion() {
+    public function recepcion()
+    {
+        if (!$this->session->is_logged) {
+            return redirect()->to(base_url('/login'));
+        }
+
         $data = [
             'titulo' => 'Recepción',
+            'habitaciones' => $this->habitacion->obtenerHabitaciones(),
+            'pisos' => $this->piso->obtenerPisos(),
         ];
 
-        $response = $this->client->request('GET', base_url('api/habitaciones/get'));
-        $data['habitaciones'] = json_decode($response->getBody(), true);
-        
-        $resp = $this->client->request('GET', base_url('api/pisos'));
-        $data['pisos'] = json_decode($resp->getBody(), true);
-        
         return view('templates/header', $data)
-        .view('templates/navbar')
-        .view('pages/recepcion')
-        .view('templates/footer')
-        .view('templates/closer');
+            . view(($this->session->id_perfil == 1) ? 'templates/navbar_admin' : 'templates/navbar_recep')
+            . view('pages/recepcion')
+            . view('templates/footer')
+            . view('templates/closer');
     }
 }
