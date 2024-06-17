@@ -21,6 +21,7 @@
 
     <?php $session = session(); ?>
 
+    <?php if($session->is_logged){ ?>
     <section class='fondo-2 sombra-abajo rounded-bottom'>
         <nav class="navbar navbar-expand-lg ">
             <div class="container-fluid mx-3">
@@ -60,16 +61,15 @@
                         <li class="nav-item btn btn-m p-0 btn-outline-light borde-btn">
                                 <a class="nav-link" aria-current="page" href="<?= base_url('en_construccion') ?>">Perfil</a>
                             </li>
-                        <li class="nav-item btn btn-m p-1 btn-outline-secondary ">
-                            <i class="fa-solid fa-arrow-right-from-bracket p-0 m-0"></i>
-                            <a class="nav-link m-0 p-0" aria-current="page" href="<?= base_url('/logout') ?>">Salir</a>
+                        <li class="nav-item btn btn-m p-2 btn-outline-secondary ">
+                            <a class="nav-link mx-2 p-0" aria-current="page" href="<?= base_url('/logout') ?>"> <i class="fa-solid fa-arrow-right-from-bracket p-0 m-0"></i></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </section>
-
+    <?php } ?>
 
     <?= $this->renderSection('content'); ?>
 

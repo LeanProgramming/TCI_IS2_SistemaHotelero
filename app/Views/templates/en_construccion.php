@@ -1,3 +1,6 @@
+<?= $this->extend('templates/layout') ?>
+<?= $this->section('content') ?>
+
 <div class="container my-5 h-100">
     <div class="row justify-content-center align-items-center">
         <div class="col row justify-content-center">
@@ -6,3 +9,5 @@
         </div>
     </div>
 </div>
+
+<?= $this->endSection() ?>

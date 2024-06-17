@@ -28,9 +28,7 @@ class Clientes extends ResourceController
 
     public function create()
     {
-
         try {
-
             $cliente = $this->request->getJSON();
             if($this->model->insert($cliente)){
                 $cliente->id_cliente = $this->model->insertID();
@@ -53,7 +51,7 @@ class Clientes extends ResourceController
 
             $cliente = $this->model->find($id);
             if($cliente == null)
-                return $this->failNotFound('No se ha encontrado un cliente con el id: '. $id);
+                return $this->respond('No se ha encontrado un cliente con el id: '. $id);
 
             return $this->respond($cliente);
         } catch (\Exception $e) {

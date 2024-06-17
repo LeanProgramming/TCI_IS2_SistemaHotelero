@@ -94,6 +94,8 @@ class HabitacionController extends BaseController
     {
 
         $this->habitacion->darDeBajaHabitacion($id);
+        
+        $this->session->setFlashdata('mensaje', 'Habitación dada de baja correctamente.');
 
         return redirect()->to(base_url('/gestion_habitaciones'));
     }
@@ -102,6 +104,8 @@ class HabitacionController extends BaseController
     {
 
         $this->habitacion->darDeAltaHabitacion($id);
+
+        $this->session->setFlashdata('mensaje', 'Habitación dada de alta correctamente.');
 
         return redirect()->to(base_url('/gestion_habitaciones'));
     }

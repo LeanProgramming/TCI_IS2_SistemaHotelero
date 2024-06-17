@@ -61,6 +61,7 @@ class UserController extends BaseController
                     'apellido' => $validateUser['apellido'],
                     'username' => $validateUser['nombre_usuario'],
                     'id_perfil' => $validateUser['id_perfil'],
+                    'id_usuario' => $validateUser['id_usuario'],
                     'is_logged' => true,
                 ];
                 

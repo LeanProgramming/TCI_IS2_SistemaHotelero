@@ -58,7 +58,8 @@ class HabitacionModel extends Model
         $builder->join('tipo_cama', 'tipo_cama.id_tipoCama = habitacion.id_tipoCama');
         $builder->join('piso', 'piso.id_piso = habitacion.id_piso');
         $builder->join('estado', 'estado.id_estado = habitacion.id_estado');
-
+        $builder->orderBy('id_piso','ASC');
+        $builder->orderBy('nro_habitacion','ASC');
         $query = $builder->get();
 
         return $query->getResult();

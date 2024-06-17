@@ -12,9 +12,10 @@ $routes->get('login', 'UserController::login');
 $routes->post('login', 'UserController::login');
 $routes->get('logout', 'UserController::logout');
 
-$routes->get('detalle_habitacion/(:num)', 'ReservaController::detalle_habitacion/$1');
+$routes->get('detalle_habitacion/(:num)', 'RegistroController::detalleHabitacion/$1');
+$routes->post('guardar_registro', 'RegistroController::guardarRegistro');
 
-$routes->get('detalle_habitacion/(:num)/buscar_cliente/(:segment)', 'ReservaController::buscarCliente/$1/$2');
+$routes->get('buscar_cliente/(:segment)/(:segment)', 'ClienteController::buscarCliente/$1/$2');
 ////---------------Espacio admin-------------
 
 
@@ -69,6 +70,11 @@ $routes->group('api', ['namespace' => 'App\Controllers\API'], function ($routes)
     $routes->put('clientes/update/(:num)', 'Clientes::update/$1');
     $routes->put('clientes/delete/(:num)', 'Clientes::delete/$1');
     $routes->put('clientes/activate/(:num)', 'Clientes::activate/$1');
+
+    //-------------Registros----------------------
+    $routes->get('registros', 'Registros::index');
+    $routes->get('registros/get_by_room/(:num)', 'Registros::getByRoom/$1');
+    $routes->post('registros/create', 'Registros::create');
 });
 
 $routes->group('auth', ['namespace' => 'App\Controllers\API'], function ($routes) {

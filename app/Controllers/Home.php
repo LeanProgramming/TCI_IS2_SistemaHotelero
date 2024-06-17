@@ -43,11 +43,7 @@ class Home extends BaseController
             'titulo' => 'En construcción'
         ];
 
-        return view('templates/header', $data)
-            . view(($this->session->id_perfil == 1) ? 'templates/navbar_admin' : 'templates/navbar_recep')
-            . view('templates/en_construccion')
-            . view('templates/footer')
-            . view('templates/closer');
+        return view('templates/en_construccion', $data);
     }
 
     public function recepcion()

@@ -63,65 +63,53 @@ $session->set('habitacion', $habitacion);
                         <tr>
                             <td><label class="form-label" for="dni">DNI: </label></td>
                             <td>
-                                <input class="form-control" type="text" id="dni_cliente" name="nro_dni" placeholder="DNI" value="<?= ($session->cliente) ? $session->cliente['nro_dni'] : set_value('nro_dni') ?>">
-                                <?php if(isset($errores['nro_dni'])) {echo '<p class="text-danger">* '.$errores['nro_dni'].'</p>';} ?>
+                                <strong><?= $cliente['nro_dni'] ?></strong>
                             </td>
-                            <td colspan="2"><button id="btn_buscarCliente" type="button" class="btn btn-outline-info" onClick="buscarCliente()">Buscar cliente</button></td>
+                            <td colspan="2"></td>
                         </tr>
                         <tr>
                             <td><label class="form-label" for="nombre">Nombre: </label></td>
                             <td>
-                                <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Nombre" value="<?= ($session->cliente) ? $session->cliente['nombre'] : set_value('nombre') ?>">
-                                <?php if(isset($errores['nombre'])) {echo '<p class="text-danger">* '.$errores['nombre'].'</p>';} ?>
+                                <strong><?= $cliente['nombre'] ?></strong>
                             </td>
                             <td><label class="form-label" for="apellido">Apellido: </label></td>
                             <td>
-                                <input class="form-control" type="text" id="apellido" name="apellido" placeholder="Apellido" value="<?= ($session->cliente) ? $session->cliente['apellido'] : set_value('apellido') ?>">
-                                <?php if(isset($errores['apellido'])) {echo '<p class="text-danger">* '.$errores['apellido'].'</p>';} ?>
+                                <strong><?= $cliente['apellido'] ?></strong>
                             </td>
                         </tr>
                         <tr>
                             <td><label class="form-label" for="tel">Telefono: </label></td>
                             <td>
-                                <input class="form-control" type="text" id="tel" name="telefono" placeholder="Teléfono" value="<?= ($session->cliente) ? $session->cliente['telefono'] : set_value('telefono') ?>">
-                                <?php if(isset($errores['telefono'])) {echo '<p class="text-danger">* '.$errores['telefono'].'</p>';} ?>
+                                <strong><?= $cliente['telefono'] ?></strong>
                             </td>
                             <td><label class="form-label" for="fecha_nac">Fecha de Nacimiento: </label></td>
                             <td>
-                                <input class="form-control" type="date" id="fecha_nac" name="fecha_nacimiento" value="<?= ($session->cliente) ? $session->cliente['fecha_nacimiento'] : set_value('fecha_nacimiento') ?>">
-                                <?php if(isset($errores['fecha_nacimiento'])) {echo '<p class="text-danger">* '.$errores['fecha_nacimiento'].'</p>';} ?>
+                                <strong><?= $cliente['fecha_nacimiento'] ?></strong>
                             </td>
                         </tr>
                         <tr>
                             <td><label class="form-label" for="fecha_ingreso">Fecha de Ingreso: </label></td>
                             <td>
-                                <input class="form-control" type="datetime-local" id="fecha_ingreso" name="fecha_ingreso" value="<?= set_value('fecha_ingreso')?>">
-                                <?php if(isset($errores['fecha_ingreso'])) {echo '<p class="text-danger">* '.$errores['fecha_ingreso'].'</p>';} ?>
+                                <strong><?= $registro['fecha_ingreso'] ?></strong>
                             </td>
                             <td><label class="form-label" for="fecha_salida">Fecha de Salida: </label></td>
                             <td>
-                                <input class="form-control" type="datetime-local" id="fecha_salida" name="fecha_salida" value="<?= set_value('fecha_salida')?>">
-                                <?php if(isset($errores['fecha_salida'])) {echo '<p class="text-danger">* '.$errores['fecha_salida'].'</p>';} ?>
+                                <strong><?= $registro['fecha_salida'] ?></strong>
                             </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"></td>
-                            <td class="text-end"><input class="form-check-input" type="checkbox" id="es_reserva" name="es_reserva"></td>
-                            <td><label class="form-check-label" for="es_reserva">Es reserva anticipada</label></td>
                         </tr>
                     </tbody>
                 </table>
 
                 <div class="col d-flex justify-content-center align-items-center gap-3 my-3">
-                    <!-- <div>
-                        <button class="btn btn-outline-warning p-2">Seleccionar Servicios</button>
-                    </div> -->
                     <div>
-                        <button type="submit" class="btn btn-outline-success p-2">Confirmar Habitación</button>
+                        <button class="btn btn-outline-warning p-2">Seleccionar Servicios</button>
                     </div>
-                    <!-- <div>
+                    <div>
                         <button class="btn btn-outline-danger p-2">Cobrar Habitación</button>
-                    </div> -->
+                    </div>
+                    <div>
+                        <button class="btn btn-outline-success p-2">Liberar Habitación</button>
+                    </div>
                 </div>
 
             </form>
@@ -129,35 +117,6 @@ $session->set('habitacion', $habitacion);
 
     </div>
 </div>
-
-<?php
-$mensaje = $session->getFlashdata('mensaje');
-
-if ($mensaje != null) {
-?>
-    <div id="myAlert" class="alert alert-danger alert-dismissible fade show position-fixed" role="alert" style="bottom: 10px; right: 20px;">
-        <strong><?= $mensaje ?></strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-<?php } ?>
-
-<script src="<?= base_url('assets/bootstrap/js/bootstrap.js') ?>"></script>
-
-<script>
-    function buscarCliente() {
-        const dni = document.querySelector('#dni_cliente');
-        const id_hab = document.querySelector('#id_hab').innerHTML;
-        if (dni.value != '') {
-            location.href = `http://localhost/sistema_hotelero/buscar_cliente/${id_hab}/${dni.value}`;
-        }
-    }
-
-    const alert = bootstrap.Alert.getOrCreateInstance('#myAlert')
-    setTimeout(() => {
-        alert.close()
-    }, 5000);
-</script>
-
 
 
 <?= $this->endSection() ?>

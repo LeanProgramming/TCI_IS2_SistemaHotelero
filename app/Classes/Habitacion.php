@@ -40,6 +40,16 @@ class Habitacion {
     public function darDeAltaHabitacion($id) {
         service('curlrequest')->request('PUT', base_url('api/habitaciones/activate/'.$id));
     }
+
+    public function ocuparHabitacion($id) {
+        $req = service('curlrequest')->request('PUT', base_url('api/habitaciones/update/'. $id), ['json' => ['id_estado' => '2']]);
+        return json_decode($req->getBody(), true);
+    }
+
+    public function liberarHabitacion($id) {
+        $req = service('curlrequest')->request('PUT', base_url('api/habitaciones/update/'. $id), ['json' => ['id_estado' => '1']]);
+        return json_decode($req->getBody(), true);
+    }
 }
 
 

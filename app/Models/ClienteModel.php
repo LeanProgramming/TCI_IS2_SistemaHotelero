@@ -29,7 +29,7 @@ class ClienteModel extends Model
         'fecha_nacimiento' => [
             'required' => 'Debe ingresar una fecha de nacimiento.'
         ],
-        'nro_documento' => [
+        'nro_dni' => [
             'required' => 'Debe ingresar un nro de documento.'
         ],
         'telefono' => [
