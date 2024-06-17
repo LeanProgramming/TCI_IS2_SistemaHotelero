@@ -1,3 +1,6 @@
+<?= $this->extend('templates/layout') ?>
+<?= $this->section('content') ?>
+
 <div class="container fondo-2 h-100 w-50 my-4 p-4 sombra-x rounded overflow-scroll">
     <div class="agregar_hab_header">
         <a class="btn btn-outline-primary" href="<?= base_url('gestion_habitaciones') ?>"><i class="fa-solid fa-chevron-left"></i></a>
@@ -93,3 +96,4 @@
     </div>
 </div>
 
+<?= $this->endSection() ?>

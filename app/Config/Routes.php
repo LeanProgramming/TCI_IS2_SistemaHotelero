@@ -8,11 +8,13 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 $routes->get('en_construccion', 'Home::en_construccion');
 $routes->get('recepcion', 'Home::recepcion');
-$routes->get('detalle_habitacion/(:num)', 'ReservaController::detalle_habitacion/$1');
 $routes->get('login', 'UserController::login');
 $routes->post('login', 'UserController::login');
 $routes->get('logout', 'UserController::logout');
 
+$routes->get('detalle_habitacion/(:num)', 'ReservaController::detalle_habitacion/$1');
+
+$routes->get('detalle_habitacion/(:num)/buscar_cliente/(:segment)', 'ReservaController::buscarCliente/$1/$2');
 ////---------------Espacio admin-------------
 
 
@@ -58,6 +60,15 @@ $routes->group('api', ['namespace' => 'App\Controllers\API'], function ($routes)
 
     //-------------Tipos de Perfil----------------------
     $routes->get('tiposPerfil', 'TiposPerfil::index');
+
+    //-------------Clientes----------------------
+    $routes->get('clientes', 'Clientes::index');
+    $routes->post('clientes/create', 'Clientes::create');
+    $routes->get('clientes/edit/(:num)', 'Clientes::edit/$1');
+    $routes->get('clientes/get_by_dni/(:segment)', 'Clientes::getByDNI/$1');
+    $routes->put('clientes/update/(:num)', 'Clientes::update/$1');
+    $routes->put('clientes/delete/(:num)', 'Clientes::delete/$1');
+    $routes->put('clientes/activate/(:num)', 'Clientes::activate/$1');
 });
 
 $routes->group('auth', ['namespace' => 'App\Controllers\API'], function ($routes) {

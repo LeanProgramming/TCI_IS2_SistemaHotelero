@@ -1,3 +1,6 @@
+<?= $this->extend('templates/layout') ?>
+<?= $this->section('content') ?>
+
 <div class="container my-2 ">
 
     <div class="container h-100 overflow-scroll d-flex flex-column justify-content-between align-items-stretch">
@@ -147,18 +150,39 @@
 
     </div>
 
-    <?php 
+    <?php
     $session = session();
     $mensaje = $session->getFlashdata('mensaje');
-    
-    if($mensaje != null) {
+
+    if ($mensaje != null) {
     ?>
-    <div id="myAlert" class="alert alert-success alert-dismissible fade show position-fixed" role="alert" style="bottom: 10px; right: 20px;">
-        <strong><?= $mensaje?></strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+        <div id="myAlert" class="alert alert-success alert-dismissible fade show position-fixed" role="alert" style="bottom: 10px; right: 20px;">
+            <strong><?= $mensaje ?></strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div class="modal fade show " tabindex="-1" stlye="display: block;" aria-modal="true" role="dialog" aria-hidden="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Modal body text goes here.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
     <?php } ?>
-    
+
 
 
 </div>
@@ -168,5 +192,6 @@
     setTimeout(() => {
         alert.close()
     }, 100);
-
 </script>
+
+<?= $this->endSection() ?>

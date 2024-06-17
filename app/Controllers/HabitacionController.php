@@ -35,11 +35,7 @@ class HabitacionController extends BaseController
             'habitaciones' => $habitaciones
         ];
 
-        return view('templates/header', $data)
-            . view('templates/navbar_admin')
-            . view('pages/admin/habitaciones/gestion_habitacion')
-            . view('templates/footer')
-            . view('templates/closer');
+        return view('pages/admin/habitaciones/gestion_habitacion', $data);
     }
 
     public function agregar_habitacion()
@@ -65,10 +61,7 @@ class HabitacionController extends BaseController
             }
         }
 
-        return view('templates/header', $data)
-            . view('templates/navbar_admin')
-            . view('pages/admin/habitaciones/agregar_habitacion')
-            . view('templates/closer');
+        return view('pages/admin/habitaciones/agregar_habitacion', $data);
     }
 
     public function modificar_habitacion($id)
@@ -94,10 +87,7 @@ class HabitacionController extends BaseController
             }
         }
 
-        return view('templates/header', $data)
-            . view('templates/navbar_admin')
-            . view('pages/admin/habitaciones/modificar_habitacion')
-            . view('templates/closer');
+        return view('pages/admin/habitaciones/modificar_habitacion', $data);
     }
 
     public function dar_baja_habitacion($id)

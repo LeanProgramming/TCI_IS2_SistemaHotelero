@@ -1,3 +1,6 @@
+<?= $this->extend('templates/layout') ?>
+<?= $this->section('content') ?>
+
 <div class="container my-5 h-100">
     <div class="row gap-3 h-100">
         <div class="col-12 align-self-center d-flex justify-content-start align-items-center gap-3 border border rounded p-3 sombra-x">
@@ -18,3 +21,5 @@
         </div>
     </div>
 </div>
+
+<?= $this->endSection() ?>

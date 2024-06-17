@@ -1,3 +1,6 @@
+<?= $this->extend('templates/layout') ?>
+<?= $this->section('content') ?>
+
 <section class='fondo-2 sombra-abajo rounded-bottom'>
     <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid mx-3">
@@ -49,3 +52,5 @@
     </div>
 
 </div>
+
+<?= $this->endSection('content') ?>

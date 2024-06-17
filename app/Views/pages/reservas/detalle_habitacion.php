@@ -1,3 +1,6 @@
+<?= $this->extend('templates/layout') ?>
+<?= $this->section('content') ?>
+
 <div class="container fondo-2 my-5 p-3 sombra-x rounded">
 
     <div class="h-100 overflow-auto">
@@ -5,6 +8,7 @@
         <div class="d-flex justify-content-center align-items-center">
             <a class="btn btn-outline-primary" href="<?= base_url('recepcion') ?>"><i class="fa-solid fa-chevron-left"></i></a>
             <h1 class="text-center text-decoration-underline w-100">Habitación <?= $nro_hab ?></h1>
+            <p class="d-none" id="id_hab"><?= $habitacion['id_habitacion'] ?></p>
         </div>
 
         <div class="border border-primary rounded p-2 m-2">
@@ -54,8 +58,8 @@
                     <tbody>
                         <tr>
                             <td><label class="form-label" for="dni">DNI: </label></td>
-                            <td><input class="form-control" type="text" id="dni" name="dni" placeholder="DNI"></td>
-                            <td colspan="2"><button class="btn btn-outline-info">Buscar cliente</button></td>
+                            <td><input class="form-control" type="text" id="dni_cliente" name="dni" placeholder="DNI"></td>
+                            <td colspan="2"><button id="btn_buscarCliente" type="button" class="btn btn-outline-info" onClick="buscarCliente()">Buscar cliente</button></td>
                         </tr>
                         <tr>
                             <td><label class="form-label" for="nombre">Nombre: </label></td>
@@ -100,3 +104,30 @@
 
     </div>
 </div>
+
+
+<?php
+$session = session();
+$mensaje = $session->getFlashdata('mensaje');
+
+if ($mensaje != null) {
+    $this->include('pages/reservas/modales/clienteNoEncontrado');
+?>
+    <div id="myAlert" class="alert alert-danger alert-dismissible fade show position-fixed" role="alert" style="bottom: 10px; right: 20px;">
+        <strong><?= $mensaje ?></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<?php } ?>
+
+
+<script>
+    function buscarCliente() {
+        const dni = document.querySelector('#dni_cliente');
+        const id_hab = document.querySelector('#id_hab').innerHTML;
+        if (dni.value != '') {
+            location.href = `http://localhost/sistema_hotelero/detalle_habitacion/${id_hab}/buscar_cliente/${dni.value}`;
+        }
+    }
+</script>
+
+<?= $this->endSection() ?>

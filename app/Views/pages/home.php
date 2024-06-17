@@ -1,3 +1,6 @@
+<?= $this->extend('templates/layout') ?>
+<?= $this->section('content') ?>
+
 <div class="container my-5">
     <div class="row align-items-center">
         <div class="col">
@@ -33,3 +36,5 @@
         </div>
     </div>
 </div>
+
+<?= $this->endSection('content') ?>

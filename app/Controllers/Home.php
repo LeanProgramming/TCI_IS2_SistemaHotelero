@@ -30,11 +30,7 @@ class Home extends BaseController
 
         $data['usuario'] = $usuario;
 
-        return view('templates/header', $data)
-            . view(($this->session->id_perfil == 1) ? 'templates/navbar_admin' : 'templates/navbar_recep')
-            . view('pages/home')
-            . view('templates/footer')
-            . view('templates/closer');
+        return view('pages/home', $data);
     }
 
     public function en_construccion()
@@ -66,10 +62,6 @@ class Home extends BaseController
             'pisos' => $this->piso->obtenerPisos(),
         ];
 
-        return view('templates/header', $data)
-            . view(($this->session->id_perfil == 1) ? 'templates/navbar_admin' : 'templates/navbar_recep')
-            . view('pages/recepcion')
-            . view('templates/footer')
-            . view('templates/closer');
+        return view('pages/recepcion', $data);
     }
 }

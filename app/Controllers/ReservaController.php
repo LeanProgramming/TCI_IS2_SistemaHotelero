@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Classes\Cliente;
 use App\Classes\Habitacion;
 use App\Classes\Piso;
 
@@ -9,11 +10,13 @@ class ReservaController extends BaseController
 {
     protected $habitacion;
     protected $piso;
+    protected $cliente;
 
     public function __construct()
     {
         $this->habitacion = new Habitacion();
         $this->piso = new Piso();
+        $this->cliente = new Cliente();
     }
 
     public function detalle_habitacion($id)
@@ -32,11 +35,27 @@ class ReservaController extends BaseController
             'habitacion' => $hab,
         ];
 
-        return view('templates/header', $data)
-            . view(($this->session->id_perfil == 1) ? 'templates/navbar_admin' : 'templates/navbar_recep')
-            . view('pages/reservas/detalle_habitacion')
-            . view('templates/footer')
-            . view('templates/closer');
+        return view('pages/reservas/detalle_habitacion', $data);
+    }
+
+    public function buscarCliente($id_hab,$dni) {
+        $hab = $this->habitacion->obtenerHabitacion($id_hab);
+        
+        $nro_hab = $hab['id_piso']. '0'. $hab['nro_habitacion'];
+
+        $data = [
+            'titulo' => 'Habitación ' . $nro_hab ,
+            'nro_hab' => $nro_hab,
+            'habitacion' => $hab,
+        ];
+
+        $cliente = $this->cliente->buscarCliente($dni);
+
+        if(isset($cliente['errors'])) {
+            $data['errores'] = $cliente['errors'];
+            // return view('pages/reservas/modales/clienteNoEncontrado', $data);
+            return redirect()->back()->with('mensaje', 'Cliente no encontrado');
+        }
     }
 
 

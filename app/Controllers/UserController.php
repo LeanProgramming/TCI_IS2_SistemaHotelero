@@ -54,9 +54,7 @@ class UserController extends BaseController
             }
 
             if (sizeof($data['errores']) > 0) {
-                return view('templates/header', $data)
-                    . view('pages/login/login')
-                    . view('templates/closer');
+                return view('pages/login/login',$data);
             } else {
                 $datos = [
                     'nombre' => $validateUser['nombre'],
@@ -72,9 +70,7 @@ class UserController extends BaseController
             }
         }
 
-        return view('templates/header', $data)
-            . view('pages/login/login')
-            . view('templates/closer');
+        return view('pages/login/login',$data);
     }
 
     public function logout() {
