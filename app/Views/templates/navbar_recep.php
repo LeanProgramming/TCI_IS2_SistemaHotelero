@@ -17,23 +17,14 @@
           <a class="nav-link" aria-current="page" href="<?= base_url('recepcion') ?>">Recepción</a>
         </li>
         <li class="nav-item btn btn-m p-0 btn-outline-light borde-btn">
-          <a class="nav-link" aria-current="page" href="<?= base_url('en_construccion') ?>">Gestión de Usuarios</a>
-        </li>
-        <li class="nav-item btn btn-m p-0 btn-outline-light borde-btn">
-          <a class="nav-link" aria-current="page" href="<?= base_url('gestion_habitaciones') ?>">Gestión de Habitaciones</a>
-        </li>
-        <li class="nav-item btn btn-m p-0 btn-outline-light borde-btn">
-          <a class="nav-link" aria-current="page" href="<?= base_url('en_construccion') ?>">Servicios Adicionales</a>
-        </li>
-        <li class="nav-item btn btn-m p-0 btn-outline-light borde-btn">
-          <a class="nav-link" aria-current="page" href="<?= base_url('en_construccion') ?>">Gestión de Pagos</a>
+          <a class="nav-link" aria-current="page" href="<?= base_url('en_construccion') ?>">Reservas</a>
         </li>
         <li class="nav-item btn btn-m p-0 btn-outline-light borde-btn">
           <a class="nav-link" aria-current="page" href="<?= base_url('en_construccion') ?>">Perfil</a>
         </li>
         <li class="nav-item btn btn-m p-1 btn-outline-secondary ">
           <i class="fa-solid fa-arrow-right-from-bracket p-0 m-0"></i>
-          <a class="nav-link m-0 p-0" aria-current="page" href="#">Salir</a>
+          <a class="nav-link m-0 p-0" aria-current="page" href="<?= base_url('/logout') ?>">Salir</a>
         </li>
       </ul>
     </div>

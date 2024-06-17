@@ -1,4 +1,4 @@
-<div class="container fondo-2 w-50 my-3 p-4 sombra-x rounded">
+<div class="container fondo-2 h-100 w-50 my-4 p-4 sombra-x rounded overflow-scroll">
     <div class="agregar_hab_header">
         <a class="btn btn-outline-primary" href="<?= base_url('gestion_habitaciones') ?>"><i class="fa-solid fa-chevron-left"></i></a>
         <h1 class="text-center">Agregar Habitación</h1>
@@ -11,7 +11,7 @@
 
             <div class="row">
                 <div class="col-10">
-                    <label for="nro_piso" class="form-label">Nro. de Piso</label>
+                    <label for="nro_piso" class="form-label">Seleccione el Piso</label>
                     <select class="form-select mb-3" aria-label="nro_piso" name="id_piso"  id="nro_piso">
                         <option selected value='0' disabled>Seleccionar un piso</option>
                         <?php foreach($pisos as $piso) { ?>
@@ -45,15 +45,16 @@
             
 
             <label for="cant_camas" class="form-label">Cantidad de camas </label>
-            <input class="form-control mb-3" type="number" value="<?= set_value('cantidad_camas') ?>" id="cant_camas" name="cantidad_camas" min=1 placeholder="Cantidad de Camas">
-            
+            <input class="form-control mb-3" type="number" value="<?= set_value('cantidad_camas') ?>" id="cant_camas" name="cantidad_camas" min=0 placeholder="Cantidad de Camas">
+            <?php if(isset($errores['cantidad_camas'])) {echo '<p class="text-danger">* '.$errores['cantidad_camas'].'</p>';} ?>
+
             <div class="row">
                 <div class="col-8">
                     <label for="tipo_cama" class="form-label">Tipo de Cama</label>
                     <select class="form-select mb-3 select-tipoCama" aria-label="tipo_cama" name="id_tipoCama"  id="tipo_cama">
                         <option selected value='0' disabled>Seleccionar un tipo de cama</option>
                         <?php foreach($tiposCama as $tipo) { ?>
-                            <option class="<?= $tipo['precio'] ?>"value='<?= $tipo['id_tipoCama'] ?>' <?= set_select('id_tipo', $tipo['id_tipoCama'])?>><?= $tipo['descripcion'] ?></option>
+                            <option class="<?= $tipo['precio'] ?>"value='<?= $tipo['id_tipoCama'] ?>' <?= set_select('id_tipoCama', $tipo['id_tipoCama'])?>><?= $tipo['descripcion'] ?></option>
                         <?php }?>
                     </select>
                 </div>

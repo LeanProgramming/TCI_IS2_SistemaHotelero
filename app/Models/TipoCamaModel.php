@@ -11,6 +11,7 @@ class TipoCamaModel extends Model
     protected $allowedFields = ['descripcion, precio'];
 
     protected $skipValidation = false;
+
 }
 
 

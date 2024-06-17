@@ -16,14 +16,21 @@ class Usuarios extends ResourceController
 
     public function index()
     {
-        $usuarios = $this->model->findAll();
-        return $this->respond($usuarios);
+        try {            
+            $usuarios = $this->model->findAll();
+            return $this->respond($usuarios);
+
+        } catch (\Exception $e) {
+            return $this->failServerError('Ha ocurrido un error en el servidor');
+        }
+
     }
 
     public function create()
     {
 
         try {
+
             $usuario = $this->request->getJSON();
             if($this->model->insert($usuario)){
                 $usuario->id_usuario = $this->model->insertID();
@@ -47,6 +54,22 @@ class Usuarios extends ResourceController
             $usuario = $this->model->find($id);
             if($usuario == null)
                 return $this->failNotFound('No se ha encontrado un usuario con el id: '. $id);
+
+            return $this->respond($usuario);
+        } catch (\Exception $e) {
+            return $this->failServerError('Ha ocurrido un error en el servidor');
+        }
+    }
+
+    public function getByUsername($username = null)
+    {
+        try {
+            if($username== null)
+                return $this->failValidationErrors('No se ha pasado un nombre de usuario válido');
+
+            $usuario = $this->model->where('nombre_usuario', $username)->first();
+            if($usuario == null)
+                return $this->respond(['errors' => 'No existe el usuario ingresado']);
 
             return $this->respond($usuario);
         } catch (\Exception $e) {

@@ -10,26 +10,38 @@ class Habitaciones extends ResourceController
     protected $modelName = 'App\Models\HabitacionModel';
     protected $format = 'json';
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->model = $this->setModel(new HabitacionModel());
+        // helper('access_rol');
     }
 
     public function index()
     {
-        $habitaciones = $this->model->findAll();
-        return $this->respond($habitaciones);
+
+        try {
+            // if (!validateAccess(array('Administrador', 'Recepcionista'), $this->request->getServer('HTTP_AUTHORIZATION'))){
+            //     return $this->failServerError('El perfil no tiene acceso a este recurso');
+            // }
+
+            $habitaciones = $this->model->findAll();
+            return $this->respond($habitaciones);
+        } catch (\Exception $e) {
+            return $this->failServerError('Ha ocurrido un error en el servidor');
+        }
     }
 
     public function create()
     {
 
         try {
+
             $habitacion = $this->request->getJSON();
-            if($this->model->insert($habitacion)){
+            if ($this->model->insert($habitacion)) {
                 $habitacion->id = $this->model->insertID();
                 return $this->respondCreated($habitacion);
             } else {
-                $errors = ['errors'=>$this->model->validation->getErrors()];
+                $errors = ['errors' => $this->model->validation->getErrors()];
                 return json_encode($errors);
             }
         } catch (\Exception $e) {
@@ -40,12 +52,12 @@ class Habitaciones extends ResourceController
     public function edit($id = null)
     {
         try {
-            if($id == null)
+            if ($id == null)
                 return $this->failValidationErrors('No se ha pasado un id válido');
 
-            $habitacion = $this->model->find($id);
-            if($habitacion == null)
-                return $this->failNotFound('No se ha encontrado un cliente con el id: '. $id);
+            $habitacion = $this->model->obtenerHabitacionDetalle($id)[0];
+            if ($habitacion == null)
+                return $this->failNotFound('No se ha encontrado un cliente con el id: ' . $id);
 
             return $this->respond($habitacion);
         } catch (\Exception $e) {
@@ -56,25 +68,23 @@ class Habitaciones extends ResourceController
     public function update($id = null)
     {
         try {
-            if($id == null)
+            if ($id == null)
                 return $this->failValidationErrors('No se ha pasado un id válido');
 
             $habitacionVerif = $this->model->find($id);
-            
-            if($habitacionVerif == null)
-                return $this->failNotFound('No se ha encontrado una habitación con el id: '. $id);
+
+            if ($habitacionVerif == null)
+                return $this->failNotFound('No se ha encontrado una habitación con el id: ' . $id);
 
             $habitacion = $this->request->getJSON();
             $habitacion->id_habitacion = $id;
 
-            if($this->model->update($id, $habitacion)){
+            if ($this->model->update($id, $habitacion)) {
                 return $this->respondUpdated($habitacion);
-
             } else {
-                $errors = ['errors'=>$this->model->validation->getErrors()];
+                $errors = ['errors' => $this->model->validation->getErrors()];
                 return json_encode($errors);
             }
-            
         } catch (\Exception $e) {
             return $this->failServerError('Ha ocurrido un error en el servidor');
         }
@@ -90,25 +100,23 @@ class Habitaciones extends ResourceController
     public function delete($id = null)
     {
         try {
-            if($id == null)
+            if ($id == null)
                 return $this->failValidationErrors('No se ha pasado un id válido');
 
             $habitacion = $this->model->find($id);
-            
-            if($habitacion == null)
-                return $this->failNotFound('No se ha encontrado una habitación con el id: '. $id);
+
+            if ($habitacion == null)
+                return $this->failNotFound('No se ha encontrado una habitación con el id: ' . $id);
 
 
             $habitacion['id_estado'] = 3;
 
-            if($this->model->update($id, $habitacion)){
+            if ($this->model->update($id, $habitacion)) {
                 return $this->respondUpdated($habitacion);
-
             } else {
 
                 return $this->failValidationErrors('No se ha podido eliminar el registro');
             }
-            
         } catch (\Exception $e) {
             return $this->failServerError('Ha ocurrido un error en el servidor');
         }
@@ -123,25 +131,23 @@ class Habitaciones extends ResourceController
     public function activate($id = null)
     {
         try {
-            if($id == null)
+            if ($id == null)
                 return $this->failValidationErrors('No se ha pasado un id válido');
 
             $habitacion = $this->model->find($id);
-            
-            if($habitacion == null)
-                return $this->failNotFound('No se ha encontrado una habitación con el id: '. $id);
+
+            if ($habitacion == null)
+                return $this->failNotFound('No se ha encontrado una habitación con el id: ' . $id);
 
 
             $habitacion['id_estado'] = 1;
 
-            if($this->model->update($id, $habitacion)){
+            if ($this->model->update($id, $habitacion)) {
                 return $this->respondUpdated($habitacion);
-
             } else {
 
                 return $this->failValidationErrors('No se ha podido eliminar el registro');
             }
-            
         } catch (\Exception $e) {
             return $this->failServerError('Ha ocurrido un error en el servidor');
         }
@@ -149,11 +155,7 @@ class Habitaciones extends ResourceController
 
     public function getDetalleHabitaciones()
     {
-        $habitaciones = $this->model->obtenerHabitaciones();
+        $habitaciones = $this->model->obtenerHabitacionesDetalle();
         return $this->respond($habitaciones);
     }
 }
-
-
-
-?>

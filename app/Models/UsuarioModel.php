@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use CodeIgniter\Model;
+helper('secure_password');
 
 class UsuarioModel extends Model
 {
@@ -12,7 +13,6 @@ class UsuarioModel extends Model
     protected $allowedFields = ['nombre', 'apellido', 'fecha_nac', 'nro_documento', 'telefono', 'nombre_usuario', 'password', 'esBaja', 'id_perfil'];
 
     protected $beforeInsert = ['hashPassword'];
-    protected $beforeUpdate = ['hashPassword'];
 
     protected $validationRules = [
         'nombre' => 'required',
@@ -65,7 +65,7 @@ class UsuarioModel extends Model
             return $data;
         }
 
-        $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_BCRYPT);
+        $data['data']['password'] = hashPassword($data['data']['password']);
 
         return $data;
     }

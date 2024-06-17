@@ -2,120 +2,117 @@
 
 namespace App\Controllers;
 
-use App\Models\HabitacionModel;
-use App\Controllers\API\Habitaciones;
-
-helper('form');
+use App\Classes\Habitacion;
+use App\Classes\Piso;
+use App\Classes\TipoCama;
+use App\Classes\TipoHabitacion;
 
 class HabitacionController extends BaseController
 {
-    protected $client;
+    protected $habitacion;
+    protected $tipoHab;
+    protected $tipoCama;
+    protected $piso;
 
     public function __construct()
     {
-        $this->client = \Config\Services::curlrequest();
+        $this->habitacion = new Habitacion();
+        $this->piso = new Piso();
+        $this->tipoHab = new TipoHabitacion();
+        $this->tipoCama = new TipoCama();
     }
 
-    public function index () {
-        $response = $this->client->request('GET', base_url('api/habitaciones/get'));
-        $data['habitaciones'] = json_decode($response->getBody(), true);
+    public function index()
+    {   
+        if(!$this->session->is_logged) {
+            return redirect()->to(base_url('/login'));
+        }
 
-        $habitaciones = $data['habitaciones'];
-        
+        $habitaciones = $this->habitacion->obtenerHabitaciones();
+
         $data = [
             'titulo' => 'Gestión de Habitaciones',
             'habitaciones' => $habitaciones
-
         ];
 
         return view('templates/header', $data)
-        .view('templates/navbar')
-        .view('pages/admin/habitaciones/gestion_habitacion')
-        .view('templates/footer')
-        .view('templates/closer');
+            . view('templates/navbar_admin')
+            . view('pages/admin/habitaciones/gestion_habitacion')
+            . view('templates/footer')
+            . view('templates/closer');
     }
 
-    public function agregar_habitacion() {
+    public function agregar_habitacion()
+    {
 
         $data = [
             'titulo' => 'Agregar Habitación',
+            'pisos' => $this->piso->obtenerPisos(),
+            'tiposHab' => $this->tipoHab->obtenerTiposHab(),
+            'tiposCama' => $this->tipoCama->obtenerTiposCama()
         ];
 
-        $response = $this->client->request('GET', base_url('api/pisos'));
-        $data['pisos'] = json_decode($response->getBody(), true);
-        $response = $this->client->request('GET', base_url('api/tiposHab'));
-        $data['tiposHab'] = json_decode($response->getBody(), true);
-        $response = $this->client->request('GET', base_url('api/tiposCama'));
-        $data['tiposCama'] = json_decode($response->getBody(), true);
+        if ($this->request->is('post')) {
+            $resp = $this->habitacion->agregarHabitacion($_POST);
 
-
-        if($this->request->is('post')) {
-            $req = $this->client->request('POST', base_url('api/habitaciones/create'), ['json' => $_POST]);
-            $resp = json_decode($req->getBody(), true);
-
-            if(isset($resp['errors'])) {
+            if (isset($resp['errors'])) {
                 $data['errores'] = $resp['errors'];
             } else {
+
+                $this->session->setFlashdata('mensaje', 'Habitación creada correctamente.');
+                
                 return redirect()->to(base_url('/gestion_habitaciones'));
             }
         }
 
         return view('templates/header', $data)
-        .view('templates/navbar')
-        .view('pages/admin/habitaciones/agregar_habitacion')
-        .view('templates/closer');
+            . view('templates/navbar_admin')
+            . view('pages/admin/habitaciones/agregar_habitacion')
+            . view('templates/closer');
     }
 
-    public function modificar_habitacion($id) {
+    public function modificar_habitacion($id)
+    {
         $data = [
             'titulo' => 'Modificar Habitación',
-            'id_hab' => $id
+            'id_hab' => $id,
+            'pisos' => $this->piso->obtenerPisos(),
+            'tiposHab' => $this->tipoHab->obtenerTiposHab(),
+            'tiposCama' => $this->tipoCama->obtenerTiposCama()
         ];
 
-        $response = $this->client->request('GET', base_url('api/pisos'));
-        $data['pisos'] = json_decode($response->getBody(), true);
-        $response = $this->client->request('GET', base_url('api/tiposHab'));
-        $data['tiposHab'] = json_decode($response->getBody(), true);
-        $response = $this->client->request('GET', base_url('api/tiposCama'));
-        $data['tiposCama'] = json_decode($response->getBody(), true);
-
-        $req = $this->client->request('GET', base_url('api/habitaciones/edit/'. $id));
-        $resp = json_decode($req->getBody(), true);
+        $resp = $this->habitacion->obtenerHabitacion($id);
         $data['hab'] = $resp;
 
-        if($this->request->is('post')) {
-            $req = $this->client->request('PUT', base_url('api/habitaciones/update/'. $id), ['json' => $_POST]);
-            $resp = json_decode($req->getBody(), true);
+        if ($this->request->is('post')) {
+            $resp = $this->habitacion->modificarHabitacion($id, $_POST);
 
-            var_dump($resp);
-
-            if(isset($resp['errors'])) {
+            if (isset($resp['errors'])) {
                 $data['errores'] = $resp['errors'];
-                var_dump($resp['errors'], $_POST);
             } else {
                 return redirect()->to(base_url('/gestion_habitaciones'));
             }
         }
 
         return view('templates/header', $data)
-        .view('templates/navbar')
-        .view('pages/admin/habitaciones/modificar_habitacion')
-        .view('templates/closer');
-
+            . view('templates/navbar_admin')
+            . view('pages/admin/habitaciones/modificar_habitacion')
+            . view('templates/closer');
     }
 
-    public function dar_baja_habitacion($id) {
+    public function dar_baja_habitacion($id)
+    {
 
-        $this->client->request('PUT', base_url('api/habitaciones/delete/'.$id));
+        $this->habitacion->darDeBajaHabitacion($id);
 
         return redirect()->to(base_url('/gestion_habitaciones'));
     }
 
-    public function dar_alta_habitacion($id) {
+    public function dar_alta_habitacion($id)
+    {
 
-        $this->client->request('PUT', base_url('api/habitaciones/activate/'.$id));
+        $this->habitacion->darDeAltaHabitacion($id);
 
         return redirect()->to(base_url('/gestion_habitaciones'));
     }
 }
-?>

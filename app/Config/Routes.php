@@ -8,7 +8,10 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 $routes->get('en_construccion', 'Home::en_construccion');
 $routes->get('recepcion', 'Home::recepcion');
-$routes->get('auth/login', 'AuthController::index');
+$routes->get('detalle_habitacion/(:num)', 'ReservaController::detalle_habitacion/$1');
+$routes->get('login', 'UserController::login');
+$routes->post('login', 'UserController::login');
+$routes->get('logout', 'UserController::logout');
 
 ////---------------Espacio admin-------------
 
@@ -25,8 +28,8 @@ $routes->post('modificar_habitacion/(:num)', 'HabitacionController::modificar_ha
 
 //----------------------API REST------------------
 
-$routes->group('api', ['namespace' => 'App\Controllers\API'], function($routes) {
-//------------Habitaciones---------------
+$routes->group('api', ['namespace' => 'App\Controllers\API'], function ($routes) {
+    //------------Habitaciones---------------
     $routes->get('habitaciones', 'Habitaciones::index');
     $routes->get('habitaciones/get', 'Habitaciones::getDetalleHabitaciones');
     $routes->post('habitaciones/create', 'Habitaciones::create');
@@ -35,22 +38,30 @@ $routes->group('api', ['namespace' => 'App\Controllers\API'], function($routes) 
     $routes->put('habitaciones/delete/(:num)', 'Habitaciones::delete/$1');
     $routes->put('habitaciones/activate/(:num)', 'Habitaciones::activate/$1');
 
-//-------------Pisos----------------------
+    //-------------Pisos----------------------
     $routes->get('pisos', 'Pisos::index');
 
-//-------------Tipos de Habitación----------------------
+    //-------------Tipos de Habitación----------------------
     $routes->get('tiposHab', 'TiposHab::index');
 
-//-------------Tipos de Cama----------------------
+    //-------------Tipos de Cama----------------------
     $routes->get('tiposCama', 'TiposCama::index');
 
-//-------------Usuarios----------------------
+    //-------------Usuarios----------------------
     $routes->get('usuarios', 'Usuarios::index');
     $routes->post('usuarios/create', 'Usuarios::create');
     $routes->get('usuarios/edit/(:num)', 'Usuarios::edit/$1');
+    $routes->get('usuarios/get_by_username/(:segment)', 'Usuarios::getByUsername/$1');
     $routes->put('usuarios/update/(:num)', 'Usuarios::update/$1');
     $routes->put('usuarios/delete/(:num)', 'Usuarios::delete/$1');
     $routes->put('usuarios/activate/(:num)', 'Usuarios::activate/$1');
+
+    //-------------Tipos de Perfil----------------------
+    $routes->get('tiposPerfil', 'TiposPerfil::index');
 });
 
+$routes->group('auth', ['namespace' => 'App\Controllers\API'], function ($routes) {
 
+    //-------------Autentificacion----------------------
+    $routes->post('login', 'Auth::login');
+});

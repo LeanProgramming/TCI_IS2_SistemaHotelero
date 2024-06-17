@@ -20,11 +20,11 @@
         <div class="col d-flex justify-content-center align-items-center">
             <div class="container border border-secondary rounded py-4">
                 <h3 class="text-center">Ingresar</h3>
-                <form class="d-flex flex-column" action="">
+                <form class="d-flex flex-column" action="<?= base_url('login') ?>" method="post"  enctype="multipart/form-data">
                     <div class="form-floating mb-3">
 
-                        <input class="form-control" type="text" id="nombre_usuario" name="user" placeholder="Nombre de Usuario">
-                        <label for="user" class="form-label">Usuario</label>
+                        <input class="form-control" type="text" id="username" value="<?= set_value('nombre_usuario')?>"  name="nombre_usuario" placeholder="Nombre de Usuario">
+                        <label for="username" class="form-label">Usuario</label>
 
                         <?php if (isset($errores['nombre_usuario'])) {
                             echo '<p class="text-danger">* ' . $errores['nombre_usuario'] . '</p>';
@@ -33,8 +33,8 @@
 
                     <div class="form-floating mb-3">
 
-                        <input class="form-control" type="password" id="password" name="pass" placeholder="Contraseña">
-                        <label for="pass" class="form-label">Contraseña</label>
+                        <input class="form-control" type="password" id="password" name="password" placeholder="Contraseña">
+                        <label for="password" class="form-label">Contraseña</label>
 
                         <?php if (isset($errores['password'])) {
                             echo '<p class="text-danger">* ' . $errores['password'] . '</p>';
