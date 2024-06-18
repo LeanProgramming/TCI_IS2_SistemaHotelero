@@ -31,7 +31,7 @@ class HabitacionModel extends Model
             'required' => 'Debe ingresar cantidad de camas.',
             'numeric' => 'La cantidad de camas debe ser un numérica.',
             'greater_than' => 'La cantidad de camas debe ser mayor a igual 1.',
-            'less_than' => 'La cantidad de camas debe ser menor a 5.'
+            'less_than' => 'La cantidad de camas debe ser menor o igual a 5.'
         ],
         'precio' => [
             'required' => 'Debe ingresar un precio para la habitación.',
