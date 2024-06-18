@@ -50,8 +50,4 @@ class Registro
         $req = service('curlrequest')->request('GET', base_url('api/registros/get_by_room/'. $id_hab));
         return json_decode($req->getBody(), true);
     }
-
-    public function verificarCobro() {
-        
-    }
 }
