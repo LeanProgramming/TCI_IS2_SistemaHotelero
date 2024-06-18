@@ -131,12 +131,23 @@ $session->set('habitacion', $habitacion);
 </div>
 
 <?php
-$mensaje = $session->getFlashdata('mensaje');
+$mensaje_danger = $session->getFlashdata('mensaje-danger');
 
-if ($mensaje != null) {
+if ($mensaje_danger != null) {
 ?>
     <div id="myAlert" class="alert alert-danger alert-dismissible fade show position-fixed" role="alert" style="bottom: 10px; right: 20px;">
-        <strong><?= $mensaje ?></strong>
+        <strong><?= $mensaje_danger ?></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<?php } ?>
+
+<?php
+$mensaje_success = $session->getFlashdata('mensaje-success');
+
+if ($mensaje_success != null) {
+?>
+    <div id="myAlert" class="alert alert-success alert-dismissible fade show position-fixed" role="alert" style="bottom: 10px; right: 20px;">
+        <strong><?= $mensaje_success ?></strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 <?php } ?>

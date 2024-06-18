@@ -150,7 +150,9 @@
 
     </div>
 
-    <?php
+</div>
+
+<?php
     $session = session();
     $mensaje = $session->getFlashdata('mensaje');
 
@@ -162,9 +164,6 @@
         </div>
     <?php } ?>
 
-
-
-</div>
 
 <script src="<?= base_url('assets/bootstrap/js/bootstrap.js') ?>"></script>
 <script>

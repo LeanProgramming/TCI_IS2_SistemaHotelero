@@ -48,7 +48,7 @@
             
 
             <label for="cant_camas" class="form-label">Cantidad de camas </label>
-            <input class="form-control mb-3" type="number" value="<?= set_value('cantidad_camas') ?>" id="cant_camas" name="cantidad_camas" min=0 placeholder="Cantidad de Camas">
+            <input class="form-control mb-3" type="number" value="<?= set_value('cantidad_camas') ?>" id="cant_camas" name="cantidad_camas" placeholder="Cantidad de Camas">
             <?php if(isset($errores['cantidad_camas'])) {echo '<p class="text-danger">* '.$errores['cantidad_camas'].'</p>';} ?>
 
             <div class="row">

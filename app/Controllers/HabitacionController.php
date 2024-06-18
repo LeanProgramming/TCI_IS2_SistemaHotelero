@@ -55,7 +55,7 @@ class HabitacionController extends BaseController
                 $data['errores'] = $resp['errors'];
             } else {
 
-                $this->session->setFlashdata('mensaje', 'Habitación creada correctamente.');
+                $this->session->setFlashdata('mensaje', 'Habitación creada con éxito.');
                 
                 return redirect()->to(base_url('/gestion_habitaciones'));
             }

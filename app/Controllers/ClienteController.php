@@ -19,9 +19,10 @@ class ClienteController extends BaseController
         if(isset($cliente['errors'])) {
             $data['errores'] = $cliente['errors'];
 
-            return redirect()->back()->with('mensaje', 'Cliente no encontrado');
+            return redirect()->back()->with('mensaje-danger', 'Cliente no encontrado');
         }
         $this->session->setFlashdata('cliente', $cliente);
+        $this->session->setFlashdata('mensaje-success', "Cliente \"{$cliente['nombre']} {$cliente['apellido']}\" encontrado.");
         return redirect()->to(base_url('detalle_habitacion/'.$id_hab));
     }
 }

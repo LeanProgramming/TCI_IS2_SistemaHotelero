@@ -14,14 +14,34 @@
         <div class="col-12 d-flex flex-wrap justify-content-start gap-3 border border rounded p-4 sombra-x">
             <?php foreach ($habitaciones as $hab) { ?>
                 <?php if ($hab['id_estado'] != 3) { ?>
-                    <a class="btn btn-lg <?= ($hab['id_estado']==1) ? 'btn-outline-success' : 'btn-outline-danger' ?> btn-hover btn-hab <?= $hab['descp_piso'] ?>" href="<?= base_url('detalle_habitacion/' . $hab['id_habitacion']) ?>" style="width:100px;height:100px;padding-top: 35px;"><?= $hab['id_piso'] . "0" . $hab['nro_habitacion'] ?></a>
+                    <a class="btn btn-lg <?= ($hab['id_estado'] == 1) ? 'btn-outline-success' : 'btn-outline-danger' ?> btn-hover btn-hab <?= $hab['descp_piso'] ?>" href="<?= base_url('detalle_habitacion/' . $hab['id_habitacion']) ?>" style="width:100px;height:100px;padding-top: 35px;"><?= $hab['id_piso'] . "0" . $hab['nro_habitacion'] ?></a>
             <?php }
             } ?>
         </div>
     </div>
 </div>
 
+<?php
+$session = session();
+$mensaje = $session->getFlashdata('mensaje');
+
+if ($mensaje != null) {
+?>
+    <div id="myAlert" class="alert alert-success alert-dismissible fade show position-fixed" role="alert" style="bottom: 10px; right: 20px;">
+        <strong><?= $mensaje ?></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<?php } ?>
+
+
+<script src="<?= base_url('assets/bootstrap/js/bootstrap.js') ?>"></script>
+
 <script>
+    const alert = bootstrap.Alert.getOrCreateInstance('#myAlert')
+    setTimeout(() => {
+        alert.close()
+    }, 5000);
+
     btn_todos = document.querySelector('.btn_todos');
     btns_piso = document.querySelectorAll('.btn-piso');
     btns_hab = document.querySelectorAll('.btn-hab');

@@ -55,6 +55,7 @@ class RegistroController extends BaseController
         if (request()->is('post')) {
             $hab = $this->session->habitacion;
             if (!$hab) return redirect()->back();
+            $nro_hab = $hab['id_piso'] . '0' . $hab['nro_habitacion'];
 
             $cl = $this->cliente->buscarCliente($_POST['nro_dni']);
 
@@ -63,7 +64,6 @@ class RegistroController extends BaseController
                 $cl = $nuevoCliente->agregarCliente();
 
                 if (isset($cl['errors'])) {
-                    $nro_hab = $hab['id_piso'] . '0' . $hab['nro_habitacion'];
                     $data = [
                         'titulo' => 'Habitación ' . $nro_hab,
                         'nro_hab' => $nro_hab,
@@ -80,7 +80,7 @@ class RegistroController extends BaseController
             $req = $registro->agregarRegistro();
 
             if (isset($req['errors'])) {
-                $nro_hab = $hab['id_piso'] . '0' . $hab['nro_habitacion'];
+                
                 $data = [
                     'titulo' => 'Habitación ' . $nro_hab,
                     'nro_hab' => $nro_hab,
@@ -92,12 +92,15 @@ class RegistroController extends BaseController
             } else {
                 $this->habitacion->ocuparHabitacion($hab['id_habitacion']);
                 $this->session->remove('habitacion');
+
+                $this->session->setFlashdata('mensaje', 'Habitación '. $nro_hab .' ocupada');
+
                 return redirect()->to(base_url('recepcion'));
             }
         }
     }
 
-    public function cobrarHabitacion() {
+    public function cobrarReserva() {
 
     }
 }
