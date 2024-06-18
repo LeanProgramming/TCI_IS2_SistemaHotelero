@@ -15,7 +15,7 @@ class HabitacionModel extends Model
     protected $validationRules = [
       'nro_habitacion' => 'required|numeric|is_unique_room[habitacion]',
       'cantidad_camas' => 'required|numeric|greater_than[0]|less_than[6]',
-      'precio' => 'required|numeric',
+      'precio' => 'required|numeric|greater_than[0]',
       'id_tipoHab' => 'required',
       'id_piso' => 'required',
       'id_tipoCama' => 'required',
@@ -24,15 +24,19 @@ class HabitacionModel extends Model
     protected $validationMessages = [
         'nro_habitacion' => [
             'required' => 'Debe ingresar un nro de habitación.',
+            'numeric' => 'El nro de habitación debe ser numérico',
             'is_unique_room' => 'La habitación ya existe.'
         ],
         'cantidad_camas' => [
             'required' => 'Debe ingresar cantidad de camas.',
+            'numeric' => 'La cantidad de camas debe ser un numérica.',
             'greater_than' => 'La cantidad de camas debe ser mayor a igual 1.',
             'less_than' => 'La cantidad de camas debe ser menor a 5.'
         ],
         'precio' => [
-            'required' => 'Debe ingresar un precio para la habitación.'
+            'required' => 'Debe ingresar un precio para la habitación.',
+            'numeric' => 'El precio ingresado debe ser un número.',
+            'greater_than' => 'El precio debe ser mayor a 0.',
         ],
         'id_tipoHab' => [
             'required' => 'Debe ingresar seleccionar un tipo de habitación.'
