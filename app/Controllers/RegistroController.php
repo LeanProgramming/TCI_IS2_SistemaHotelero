@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Classes\Cliente;
 use App\Classes\Habitacion;
+use App\Classes\MedioDePago;
+use App\Classes\Pago;
 use App\Classes\Piso;
 use App\Classes\Registro;
 
@@ -13,6 +15,8 @@ class RegistroController extends BaseController
     protected $piso;
     protected $cliente;
     protected $registro;
+    protected $medioPago;
+    protected $pago;
 
     public function __construct()
     {
@@ -20,6 +24,8 @@ class RegistroController extends BaseController
         $this->piso = new Piso();
         $this->cliente = new Cliente();
         $this->registro = new Registro();
+        $this->medioPago = new MedioDePago();
+        $this->pago = new Pago();
     }
 
     public function detalleHabitacion($id)
@@ -42,9 +48,12 @@ class RegistroController extends BaseController
         } else {
             $registro = $this->registro->obtenerRegistroPorHabitacion($hab['id_habitacion']);
             $cliente = $this->cliente->obtenerCliente($registro['id_cliente']);
+            $mediosPago = $this->medioPago->obtenerMediosDePago();
+            $data['pago'] = (new Pago())->obtenerPagoPorRegistro($registro['id_registro']);
             $data['cliente'] = $cliente;
             $data['registro'] = $registro;
-
+            $data['mediosPago'] = $mediosPago;
+            
             return view('pages/reservas/detalle_habitacion_ocupada', $data);
         }
     }
@@ -98,9 +107,38 @@ class RegistroController extends BaseController
                 return redirect()->to(base_url('recepcion'));
             }
         }
+        return redirect()->back();
     }
 
-    public function cobrarReserva() {
+    public function cobrarReserva($id) {
+        if(request()->is('post')) {
+            $registro = $this->registro->obtenerRegistro($id);
+            $hab = $this->habitacion->obtenerHabitacion($registro['id_habitacion']);
+            $id_usuario = $this->session->id_usuario;
 
+            $subtotal = $hab['precio']; //precio habitacion + servicios;
+            $total = $subtotal;//subtotal + ofertas y/o descuentos aplicados;
+            $now = date('Y-m-d H:i');
+
+            if(!isset($_POST['id_medioPago'])) return redirect()->back()->with('mensaje-danger', 'Debe seleccionar un método de pago');
+            $pago = new Pago($subtotal, $total, $now, 0, $id, $id_usuario, $_POST['id_medioPago']);
+
+            $pago->agregarPago();
+
+            $data['pago'] = $pago->obtenerPagoPorRegistro($registro['id_registro']);
+
+            $this->session->setFlashdata('mensaje-success', 'Reserva cobrada correctamente.');
+            return redirect()->to('detalle_habitacion/'.$hab['id_habitacion']);
+        }
+
+        return redirect()->back();
+    }
+
+    public function liberarHabitacion($id_hab, $id_reg) {
+        $pago = $this->pago->obtenerPagoPorRegistro($id_reg);
+        if($pago == null) return redirect()->back()->with('mensaje-danger', 'No se puede liberar la habitación. La reserva aún no se encuentra pagada.');
+        
+        $this->habitacion->liberarHabitacion($id_hab);
+        return redirect()->to('recepcion');
     }
 }

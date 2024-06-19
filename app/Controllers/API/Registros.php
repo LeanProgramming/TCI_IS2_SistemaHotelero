@@ -44,7 +44,18 @@ class Registros extends ResourceController
 
     public function edit($id = null)
     {
+        try {
+            if ($id == null)
+                return $this->failValidationErrors('No se ha pasado un id válido');
 
+            $registro = $this->model->find($id);
+            if ($registro == null)
+                return $this->failNotFound('No se ha encontrado un registro con el id: ' . $id);
+
+            return $this->respond($registro);
+        } catch (\Exception $e) {
+            return $this->failServerError('Ha ocurrido un error en el servidor');
+        }
     }
 
     public function update($id = null)

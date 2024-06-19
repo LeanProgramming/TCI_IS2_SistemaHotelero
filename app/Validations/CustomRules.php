@@ -2,6 +2,7 @@
 
 namespace App\Validations;
 use App\Models\HabitacionModel;
+use DateTime;
 
 class CustomRules
 {
@@ -19,6 +20,22 @@ class CustomRules
         } else {
             return true;
         }      
+    }
+
+    public function is_entry_date_valid($value): bool
+    {
+        $now = (new DateTime())->format('Y-m-d');
+        $entryDate = (new DateTime($value))->format('Y-m-d');
+
+        return ($entryDate >= $now);  
+    }
+
+    public function is_exit_date_valid($value, string $str, array $data,): bool
+    {
+        $entryDate = (new DateTime($data['fecha_ingreso']))->format('Y-m-d');
+        $exitDate = (new DateTime($value))->format('Y-m-d');
+
+        return ($exitDate > $entryDate);  
     }
 }
 

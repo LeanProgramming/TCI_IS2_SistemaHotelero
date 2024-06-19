@@ -14,8 +14,11 @@ $routes->get('logout', 'UserController::logout');
 
 $routes->get('detalle_habitacion/(:num)', 'RegistroController::detalleHabitacion/$1');
 $routes->post('guardar_registro', 'RegistroController::guardarRegistro');
+$routes->post('cobrar_reserva/(:num)', 'RegistroController::cobrarReserva/$1');
+$routes->get('liberar_habitacion/(:num)/(:num)', 'RegistroController::liberarHabitacion/$1/$2');
 
 $routes->get('buscar_cliente/(:segment)/(:segment)', 'ClienteController::buscarCliente/$1/$2');
+
 ////---------------Espacio admin-------------
 
 
@@ -75,6 +78,16 @@ $routes->group('api', ['namespace' => 'App\Controllers\API'], function ($routes)
     $routes->get('registros', 'Registros::index');
     $routes->get('registros/get_by_room/(:num)', 'Registros::getByRoom/$1');
     $routes->post('registros/create', 'Registros::create');
+    $routes->get('registros/edit/(:num)', 'Registros::edit/$1');
+
+    //-------------Medios de Pago----------------------
+    $routes->get('medios_pago', 'MediosDePago::index');
+    $routes->post('medios_pago/create', 'MediosDePago::create');
+
+    //-------------Pagos----------------------
+    $routes->get('pagos', 'Pagos::index');
+    $routes->post('pagos/create', 'Pagos::create');
+    $routes->get('pagos/get_by_register/(:num)', 'Pagos::getByRegister/$1');
 });
 
 $routes->group('auth', ['namespace' => 'App\Controllers\API'], function ($routes) {

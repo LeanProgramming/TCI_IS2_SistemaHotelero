@@ -43,11 +43,12 @@ $session->set('habitacion', $habitacion);
                             </thead>
                             <tbody class="table-group-divider">
                                 <tr scope="row">
-                                    <td class="text-center">Desayuno</td>
+                                    <!-- <td class="text-center">Desayuno</td>
                                     <td class="text-center">5</td>
                                     <td class="text-center">16/06/2024</td>
                                     <td class="text-center">$ 3500</td>
-                                    <td class="text-center"><button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="<?= '#modal_quitar' ?>"><i class="fa-solid fa-trash"></i></button></td>
+                                    <td class="text-center"><button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="<?= '#modal_quitar' ?>"><i class="fa-solid fa-trash"></i></button></td> -->
+                                    <td colspan="6" class="text-center">Sin servicios seleccionados</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -64,7 +65,9 @@ $session->set('habitacion', $habitacion);
                             <td><label class="form-label" for="dni">DNI: </label></td>
                             <td>
                                 <input class="form-control" type="text" id="dni_cliente" name="nro_dni" placeholder="DNI" value="<?= ($session->cliente) ? $session->cliente['nro_dni'] : set_value('nro_dni') ?>">
-                                <?php if(isset($errores['nro_dni'])) {echo '<p class="text-danger">* '.$errores['nro_dni'].'</p>';} ?>
+                                <?php if (isset($errores['nro_dni'])) {
+                                    echo '<p class="text-danger">* ' . $errores['nro_dni'] . '</p>';
+                                } ?>
                             </td>
                             <td colspan="2"><button id="btn_buscarCliente" type="button" class="btn btn-outline-info" onClick="buscarCliente()">Buscar cliente</button></td>
                         </tr>
@@ -72,36 +75,48 @@ $session->set('habitacion', $habitacion);
                             <td><label class="form-label" for="nombre">Nombre: </label></td>
                             <td>
                                 <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Nombre" value="<?= ($session->cliente) ? $session->cliente['nombre'] : set_value('nombre') ?>">
-                                <?php if(isset($errores['nombre'])) {echo '<p class="text-danger">* '.$errores['nombre'].'</p>';} ?>
+                                <?php if (isset($errores['nombre'])) {
+                                    echo '<p class="text-danger">* ' . $errores['nombre'] . '</p>';
+                                } ?>
                             </td>
                             <td><label class="form-label" for="apellido">Apellido: </label></td>
                             <td>
                                 <input class="form-control" type="text" id="apellido" name="apellido" placeholder="Apellido" value="<?= ($session->cliente) ? $session->cliente['apellido'] : set_value('apellido') ?>">
-                                <?php if(isset($errores['apellido'])) {echo '<p class="text-danger">* '.$errores['apellido'].'</p>';} ?>
+                                <?php if (isset($errores['apellido'])) {
+                                    echo '<p class="text-danger">* ' . $errores['apellido'] . '</p>';
+                                } ?>
                             </td>
                         </tr>
                         <tr>
                             <td><label class="form-label" for="tel">Telefono: </label></td>
                             <td>
                                 <input class="form-control" type="text" id="tel" name="telefono" placeholder="Teléfono" value="<?= ($session->cliente) ? $session->cliente['telefono'] : set_value('telefono') ?>">
-                                <?php if(isset($errores['telefono'])) {echo '<p class="text-danger">* '.$errores['telefono'].'</p>';} ?>
+                                <?php if (isset($errores['telefono'])) {
+                                    echo '<p class="text-danger">* ' . $errores['telefono'] . '</p>';
+                                } ?>
                             </td>
                             <td><label class="form-label" for="fecha_nac">Fecha de Nacimiento: </label></td>
                             <td>
                                 <input class="form-control" type="date" id="fecha_nac" name="fecha_nacimiento" value="<?= ($session->cliente) ? $session->cliente['fecha_nacimiento'] : set_value('fecha_nacimiento') ?>">
-                                <?php if(isset($errores['fecha_nacimiento'])) {echo '<p class="text-danger">* '.$errores['fecha_nacimiento'].'</p>';} ?>
+                                <?php if (isset($errores['fecha_nacimiento'])) {
+                                    echo '<p class="text-danger">* ' . $errores['fecha_nacimiento'] . '</p>';
+                                } ?>
                             </td>
                         </tr>
                         <tr>
                             <td><label class="form-label" for="fecha_ingreso">Fecha de Ingreso: </label></td>
                             <td>
-                                <input class="form-control" type="datetime-local" id="fecha_ingreso" name="fecha_ingreso" value="<?= set_value('fecha_ingreso')?>">
-                                <?php if(isset($errores['fecha_ingreso'])) {echo '<p class="text-danger">* '.$errores['fecha_ingreso'].'</p>';} ?>
+                                <input class="form-control" type="datetime-local" id="fecha_ingreso" name="fecha_ingreso" step="1800" value="<?= set_value('fecha_ingreso') ?>">
+                                <?php if (isset($errores['fecha_ingreso'])) {
+                                    echo '<p class="text-danger">* ' . $errores['fecha_ingreso'] . '</p>';
+                                } ?>
                             </td>
                             <td><label class="form-label" for="fecha_salida">Fecha de Salida: </label></td>
                             <td>
-                                <input class="form-control" type="datetime-local" id="fecha_salida" name="fecha_salida" value="<?= set_value('fecha_salida')?>">
-                                <?php if(isset($errores['fecha_salida'])) {echo '<p class="text-danger">* '.$errores['fecha_salida'].'</p>';} ?>
+                                <input class="form-control" type="datetime-local" id="fecha_salida" name="fecha_salida" step="1800" value="<?= set_value('fecha_salida') ?>">
+                                <?php if (isset($errores['fecha_salida'])) {
+                                    echo '<p class="text-danger">* ' . $errores['fecha_salida'] . '</p>';
+                                } ?>
                             </td>
                         </tr>
                         <tr>
@@ -113,22 +128,36 @@ $session->set('habitacion', $habitacion);
                 </table>
 
                 <div class="col d-flex justify-content-center align-items-center gap-3 my-3">
-                    <!-- <div>
-                        <button class="btn btn-outline-warning p-2">Seleccionar Servicios</button>
-                    </div> -->
                     <div>
-                        <button type="submit" class="btn btn-outline-success p-2">Confirmar Habitación</button>
+                        <button type="button" class="btn btn-outline-success p-2" data-bs-toggle="modal" data-bs-target="#modal_confirmacion">Confirmar Habitación</button>
                     </div>
-                    <!-- <div>
-                        <button class="btn btn-outline-danger p-2">Cobrar Habitación</button>
-                    </div> -->
                 </div>
 
+                <!--Modal de confirmación-->
+                <div class="modal fade" id="modal_confirmacion" tabindex="-1" aria-labelledby="modalConfirmacion" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title fs-5" id="modalConfirmacion">Confirmar Reserva</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>¿Desea confirmar la reserva?</p>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center align-items-center">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-outline-success btn-hover">Confirmar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
 
     </div>
 </div>
+
+
 
 <?php
 $mensaje_danger = $session->getFlashdata('mensaje-danger');
