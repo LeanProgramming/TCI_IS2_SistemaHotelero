@@ -1,3 +1,6 @@
+<?= $this->extend('templates/layout') ?>
+<?= $this->section('content') ?>
+
 <div class="container my-5">
     <div class="row align-items-center">
         <div class="col">
@@ -28,7 +31,10 @@
         <div class="col d-flex flex-column justify-column-center align-items-center">
                 <img src="<?= base_url('assets/img/logo/logo_hotel_parana.png') ?>" class="d-block w-50"  alt="Logo Hotel Paraná">
                 <h1 class="text-center">Hotel Paraná S.A.</h1>
-                <h2 class="text-center">Bienvenido Administrador</h2>         
+                <h2 class="text-center">Bienvenido <?= ($usuario['id_perfil']==1) ? 'Administrador' : 'Recepcionista' ?></h2>
+                <h2 class="text-center"><?= $usuario['nombre']. ' ' . $usuario['apellido'] ?></h2>
         </div>
     </div>
 </div>
+
+<?= $this->endSection('content') ?>

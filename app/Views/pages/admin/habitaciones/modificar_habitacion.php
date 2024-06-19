@@ -1,4 +1,7 @@
-<div class="container fondo-2 w-50 my-3 p-4 sombra-x rounded">
+<?= $this->extend('templates/layout') ?>
+<?= $this->section('content') ?>
+
+<div class="container fondo-2 w-50 my-3 p-4 sombra-x rounded overflow-auto">
     <div class="modificar_hab_header">
         <a class="btn btn-outline-primary" href="<?= base_url('gestion_habitaciones') ?>"><i class="fa-solid fa-chevron-left"></i></a>
         <h1 class="text-center">Modificar Habitación</h1>
@@ -11,7 +14,7 @@
 
             <div class="row">
                 <div class="col-10">
-                    <label for="nro_piso" class="form-label">Nro. de Piso</label>
+                    <label for="nro_piso" class="form-label">Seleccione el Piso</label>
                     <select disabled class="form-select mb-3" aria-label="nro_piso" name="id_piso"  id="nro_piso">
                         <option selected value='0' disabled>Seleccionar un piso</option>
                         <option value='1' <?= ($hab['id_piso'] == 1) ? 'selected' : ''?> >Primer Piso</option>
@@ -46,6 +49,7 @@
 
             <label for="cant_camas" class="form-label">Cantidad de camas </label>
             <input required class="form-control mb-3" type="number" value="<?= $hab['cantidad_camas'] ?>" id="cant_camas" name="cantidad_camas" min=1 placeholder="Cantidad de Camas">
+            <?php if(isset($errores['cantidad_camas'])) {echo '<p class="text-danger">* '.$errores['cantidad_camas'].'</p>';} ?>
             
             <div class="row">
                 <div class="col-8">
@@ -92,3 +96,4 @@
     </div>
 </div>
 
+<?= $this->endSection() ?>

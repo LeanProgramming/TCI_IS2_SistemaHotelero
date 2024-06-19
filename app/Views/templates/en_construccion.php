@@ -1,4 +1,7 @@
-<div class="container my-5">
+<?= $this->extend('templates/layout') ?>
+<?= $this->section('content') ?>
+
+<div class="container my-5 h-100">
     <div class="row justify-content-center align-items-center">
         <div class="col row justify-content-center">
             <img class="img-fluid" src="<?= base_url('assets/img/under-constructions.png') ?>" alt="Página en construcción" style=width:400px;>
@@ -6,3 +9,5 @@
         </div>
     </div>
 </div>
+
+<?= $this->endSection() ?>
