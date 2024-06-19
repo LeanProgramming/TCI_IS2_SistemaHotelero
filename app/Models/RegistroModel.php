@@ -42,6 +42,7 @@ class RegistroModel extends Model
         $builder->where('id_habitacion', $id);
         $builder->where('DATE(fecha_ingreso) <=', $now);
         $builder->where('DATE(fecha_salida) >=', $now);
+        $builder->orderBy('id_registro', 'DESC');
         $query = $builder->get();
 
         return $query->getResult();

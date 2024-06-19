@@ -12,8 +12,8 @@ class ClienteModel extends Model
     protected $allowedFields = ['nro_dni', 'apellido', 'nombre', 'fecha_nacimiento', 'telefono', 'esBaja'];
 
     protected $validationRules = [
-        'nombre' => 'required',
-        'apellido' => 'required',
+        'nombre' => 'required|alpha',
+        'apellido' => 'required|alpha',
         'fecha_nacimiento' => 'required',
         'nro_dni' => 'required|numeric|min_length[7]|max_length[10]',
         'telefono' => 'required|numeric|min_length[10]|max_length[15]',
@@ -21,10 +21,12 @@ class ClienteModel extends Model
 
     protected $validationMessages = [
         'nombre' => [
-            'required' => 'Debe ingresar un nombre.'
+            'required' => 'Debe ingresar un nombre.',
+            'alpha' => 'El nombre solo debe contener letras.'
         ],
         'apellido' => [
-            'required' => 'Debe ingresar un apellido.'
+            'required' => 'Debe ingresar un apellido.',
+            'alpha' => 'El apellido solo debe contener letras.'
         ],
         'fecha_nacimiento' => [
             'required' => 'Debe ingresar una fecha de nacimiento.'
