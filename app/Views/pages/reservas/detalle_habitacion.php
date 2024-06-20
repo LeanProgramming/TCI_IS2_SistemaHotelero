@@ -126,12 +126,13 @@ $session->set('habitacion', $habitacion);
                         </tr>
                     </tbody>
                 </table>
-
+                <?php if($session->id_perfil != 1) { ?>
                 <div class="col d-flex justify-content-center align-items-center gap-3 my-3">
                     <div>
                         <button type="button" class="btn btn-outline-success p-2" data-bs-toggle="modal" data-bs-target="#modal_confirmacion">Confirmar Habitación</button>
                     </div>
                 </div>
+                <?php } ?>
 
                 <!--Modal de confirmación-->
                 <div class="modal fade" id="modal_confirmacion" tabindex="-1" aria-labelledby="modalConfirmacion" aria-hidden="true">

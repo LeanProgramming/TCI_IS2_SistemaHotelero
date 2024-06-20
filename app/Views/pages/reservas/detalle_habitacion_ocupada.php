@@ -100,6 +100,8 @@ $session = session();
                     </tbody>
                 </table>
 
+                <?php if($session->id_perfil != 1) { ?>
+
                 <div class="col d-flex justify-content-center align-items-center gap-3 my-3">
                     <div>
                         <button type="button" class="btn btn-outline-warning p-2" data-bs-toggle="modal" data-bs-target="#modal_servicios">Seleccionar Servicios</button>
@@ -111,6 +113,7 @@ $session = session();
                         <button type="button" class="btn btn-outline-success p-2" data-bs-toggle="modal" data-bs-target="#modal_liberar">Liberar Habitación</button>
                     </div>
                 </div>
+                <?php } ?>
 
             </form>
         </div>
